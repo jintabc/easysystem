@@ -1,0 +1,71 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{A00AF4DD-5249-49F7-BC76-EF08F2EA5DB4}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>EasySystem.Core</RootNamespace>
+    <AssemblyName>EasySystem.Core</AssemblyName>
+    <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="System" />
+    <Reference Include="System.configuration" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Controller\CategoryController.cs" />
+    <Compile Include="Controller\DBHelper.cs" />
+    <Compile Include="Controller\GoodsController.cs" />
+    <Compile Include="Controller\InventoryController.cs" />
+    <Compile Include="Controller\SupplierController.cs" />
+    <Compile Include="Controller\ProjectController.cs" />
+    <Compile Include="Controller\WarehouseController.cs" />
+    <Compile Include="Entity\Business_BlueprintRecord.cs" />
+    <Compile Include="Entity\Business_BlurprintRecordItem.cs" />
+    <Compile Include="Entity\Business_ServiceType.cs" />
+    <Compile Include="Entity\Business_Project.cs" />
+    <Compile Include="Entity\Business_Assignment.cs" />
+    <Compile Include="Entity\Business_AssignmentDetail.cs" />
+    <Compile Include="Entity\Business_SubProject.cs" />
+    <Compile Include="Entity\Common_Department.cs" />
+    <Compile Include="Entity\Common_Enumeration.cs" />
+    <Compile Include="Entity\Common_PaperSize.cs" />
+    <Compile Include="Entity\Warehouse_Category.cs" />
+    <Compile Include="Entity\Storage_DeliveryOrder.cs" />
+    <Compile Include="Entity\Storage_GodownEntry.cs" />
+    <Compile Include="Entity\Warehouse_Goods.cs" />
+    <Compile Include="Entity\Warehouse_Inventory.cs" />
+    <Compile Include="Entity\Warehouse_Warehouse.cs" />
+    <Compile Include="Entity\Warehouse_Supplier.cs" />
+    <Compile Include="Entity\System_User.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+</Project>

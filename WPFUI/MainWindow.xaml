@@ -1,0 +1,122 @@
+﻿<Window x:Class="WPFUI.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:c="clr-namespace:System.Windows.Controls;assembly=System.Windows.Controls.Input.Toolkit"
+        xmlns:xc="http://schemas.xceed.com/wpf/xaml/toolkit"
+        xmlns:local="clr-namespace:WPFUI"
+        mc:Ignorable="d"
+        Title="MainWindow" Height="768" Width="1024">
+    <Window.Resources>
+        <Style x:Key="Normal">
+            <Setter Property="Control.Width" Value="150"></Setter>
+            <Setter Property="Control.Height" Value="26"></Setter>
+            <Setter Property="Control.Margin" Value="5,3"></Setter>
+            <Setter Property="Control.HorizontalAlignment" Value="Left"></Setter>
+            <Setter Property="Control.VerticalContentAlignment" Value="Center"></Setter>
+        </Style>
+        <Style x:Key="Short">
+            <Setter Property="Control.Width" Value="120"></Setter>
+            <Setter Property="Control.Height" Value="26"></Setter>
+            <Setter Property="Control.Margin" Value="5,3"></Setter>
+            <Setter Property="Control.HorizontalAlignment" Value="Left"></Setter>
+            <Setter Property="Control.VerticalContentAlignment" Value="Center"></Setter>
+        </Style>
+        <Style x:Key="LongControl">
+            <Setter Property="Control.Height" Value="26"></Setter>
+            <Setter Property="Control.Margin" Value="5,3"></Setter>
+        </Style>
+        <Style x:Key="Button" TargetType="Button">
+            <Setter Property="Width" Value="80"></Setter>
+            <Setter Property="Height" Value="26"></Setter>
+            <Setter Property="Margin" Value="5,3"></Setter>
+        </Style>
+        <Style x:Key="Label" TargetType="Label">
+            <Setter Property="Height" Value="26"></Setter>
+            <Setter Property="Margin" Value="5,3"></Setter>
+            <Setter Property="VerticalContentAlignment" Value="Center"></Setter>
+        </Style>
+    </Window.Resources>
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="80"/>
+            <ColumnDefinition Width="1*"/>
+            <ColumnDefinition Width="80"/>
+            <ColumnDefinition Width="1*"/>
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="50"/>
+            <RowDefinition Height="35"/>
+            <RowDefinition Height="35"/>
+            <RowDefinition Height="35"/>
+            <RowDefinition Height="35"/>
+            <RowDefinition Height="35"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="35"/>
+        </Grid.RowDefinitions>
+        <Label Content="业务记录" Grid.Row="0" Grid.ColumnSpan="4" HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="30" ></Label>
+        <Label Content="编号" Grid.Row="1" Grid.Column="0"  Style="{StaticResource Label}" ></Label>
+        <Label Content="日期" Grid.Row="1" Grid.Column="2"  Style="{StaticResource Label}" />
+        <Label Content="部门" Grid.Row="2" Grid.Column="0" Style="{StaticResource Label}"  ></Label>
+        <Label Content="经办人" Grid.Row="2" Grid.Column="2" Style="{StaticResource Label}"  />
+        <Label Content="项目名称" Grid.Row="3" Style="{StaticResource Label}"  ></Label>
+        <Label Content="专业名称" Grid.Row="4"  Style="{StaticResource Label}" ></Label>
+        <Label Content="业务性质" Grid.Row="5"  Style="{StaticResource Label}" ></Label>
+        <GroupBox Header="业务明细" Grid.Row="6" Grid.ColumnSpan="4">
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="35"></RowDefinition>
+                    <RowDefinition Height="*"></RowDefinition>
+                </Grid.RowDefinitions>
+                <WrapPanel Grid.Row="0" >
+                    <Label Content="业务名称" Style="{StaticResource Label}"></Label>
+                    <c:AutoCompleteBox x:Name="acbServiceType" Style="{StaticResource Short}" SelectionChanged="acbServiceType_SelectionChanged" />
+                    <Label Content="尺寸" Style="{StaticResource Label}"></Label>
+                    <ComboBox x:Name="cboSize" Style="{StaticResource Short}" SelectedIndex="0">
+                        <ComboBoxItem>A4</ComboBoxItem>
+                        <ComboBoxItem>A3</ComboBoxItem>
+                        <ComboBoxItem>A2</ComboBoxItem>
+                        <ComboBoxItem>A1</ComboBoxItem>
+                        <ComboBoxItem>A0</ComboBoxItem>
+                    </ComboBox>
+                    <Label Content="数量" Style="{StaticResource Label}"></Label>
+                    <xc:SingleUpDown x:Name="sudQuantity" Style="{StaticResource Short}" Value="1"></xc:SingleUpDown>
+                    <Label Content="份数" Style="{StaticResource Label}"></Label>
+                    <xc:SingleUpDown x:Name="sudCopy" Style="{StaticResource Short}" Value="1"></xc:SingleUpDown>
+                    <Label Content="备注" Style="{StaticResource Label}"></Label>
+                    <TextBox x:Name="txtRemarks" Style="{StaticResource Short}"></TextBox>
+                    <Button x:Name="btnAdd" Content="添加"  Style="{StaticResource Button}" Click="Button_Click"/>
+                </WrapPanel>
+                <ListView Grid.Row="1" ItemsSource="{Binding Details}" x:Name="abc" >
+                    <ListView.View>
+                        <GridView>
+                            <GridViewColumn Header="业务名称" Width="100" DisplayMemberBinding="{Binding ServiceType.Name}" ></GridViewColumn>
+                            <GridViewColumn Header="尺寸" Width="100" DisplayMemberBinding="{Binding ServiceType.Size}"></GridViewColumn>
+                            <GridViewColumn Header="数量" Width="100" DisplayMemberBinding="{Binding Quantity}"></GridViewColumn>
+                            <GridViewColumn Header="份数" Width="100" DisplayMemberBinding="{Binding Copy}"></GridViewColumn>
+                            <GridViewColumn Header="备注" Width="100" DisplayMemberBinding="{Binding Remarks}"></GridViewColumn>
+                        </GridView>
+                    </ListView.View>
+                </ListView>
+            </Grid>
+        </GroupBox>
+
+        <Label Grid.Row="1" Grid.Column="1" Style="{StaticResource Normal}" Content="{Binding SerialNumber}"></Label>
+        <DatePicker Grid.Row="1" Grid.Column="3" Style="{StaticResource Normal}" SelectedDate="{Binding FinishDate}"></DatePicker>
+        <ComboBox Grid.Row="2" Grid.Column="1" Style="{StaticResource Normal}" Text="{Binding Department}" SelectedIndex="0">
+            <ComboBoxItem>市政分院</ComboBoxItem>
+            <ComboBoxItem>建筑分院</ComboBoxItem>
+            <ComboBoxItem>景观分院</ComboBoxItem>
+            <ComboBoxItem>规划分院总规所</ComboBoxItem>
+        </ComboBox>
+        <TextBox Grid.Row="2" Grid.Column="3" Style="{StaticResource Normal}" Text="{Binding Customer}"></TextBox>
+        <c:AutoCompleteBox x:Name="acbProjectName" Grid.Row="3" Grid.Column="1" Grid.ColumnSpan="3" Style="{StaticResource LongControl}" ItemsSource="{Binding}" Text="{Binding Project}" ></c:AutoCompleteBox>
+        <TextBox Grid.Row="4" Grid.Column="1" Grid.ColumnSpan="3" Style="{StaticResource LongControl}" Text="{Binding SubjectName}"></TextBox>
+        <WrapPanel Grid.Row="5" Grid.Column="1" Grid.ColumnSpan="3">
+            <RadioButton Content="院内" Style="{StaticResource Short}" IsChecked="True"></RadioButton>
+            <RadioButton Content="加晒" Style="{StaticResource Short}"></RadioButton>
+        </WrapPanel>
+        <Button Content="确定" Grid.Row="8" Grid.Column="4" Style="{StaticResource Button}" Click="Button_Click_1"></Button>
+    </Grid>
+</Window>
