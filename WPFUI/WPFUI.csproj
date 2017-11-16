@@ -109,6 +109,9 @@
     <Compile Include="CategoryWindow.xaml.cs">
       <DependentUpon>CategoryWindow.xaml</DependentUpon>
     </Compile>
+    <Compile Include="DepartmentWindow.xaml.cs">
+      <DependentUpon>DepartmentWindow.xaml</DependentUpon>
+    </Compile>
     <Compile Include="GoodsInfoWindow.xaml.cs">
       <DependentUpon>GoodsInfoWindow.xaml</DependentUpon>
     </Compile>
@@ -128,6 +131,10 @@
       <DependentUpon>SupplierWindow.xaml</DependentUpon>
     </Compile>
     <Page Include="CategoryWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="DepartmentWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
