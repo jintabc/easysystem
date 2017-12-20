@@ -1,0 +1,47 @@
+﻿<Window x:Class="EasySystem.WPFUI.TaskDetailWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:EasySystem.WPFUI"
+        mc:Ignorable="d"
+        Title="TaskDetailWindow" Height="323.741" Width="527.698">
+    <DockPanel>
+        <GroupBox Header="项目信息" Margin="10" Height="80" DockPanel.Dock="Top">
+            <WrapPanel>
+                <Label Content="项目名" />
+                <Label Content="建设单位"/>
+                <Label Content="设计部门"/>
+                <Label Content="设计号"/>
+                <Label Content="项目负责人"/>
+                <Label Content="经办人"/>
+                <Label Content="成本单编号"/>
+                <Label Content="底图盖章单编号"/>
+                <Label Content="成果交接单编号"/>
+                <Label Content="是否加晒"/>
+                <Label Content="总金额"/>
+                <Label Content="完成时间"/>
+            </WrapPanel>
+        </GroupBox>
+        <GroupBox Header="详细信息" DockPanel.Dock="Bottom">
+            <ListView>
+                <ListView.View>
+                    <GridView>
+                        <GridView.Columns>
+                            <GridViewColumn Header="序号" />
+                            <GridViewColumn Header="栋号" />
+                            <GridViewColumn Header="分册" />
+                            <GridViewColumn Header="专业" />
+                            <GridViewColumn Header="A0" />
+                            <GridViewColumn Header="A1" />
+                            <GridViewColumn Header="A2" />
+                            <GridViewColumn Header="A3" />
+                            <GridViewColumn Header="份数"/>
+                            <GridViewColumn Header="备注" />
+                        </GridView.Columns>
+                    </GridView>
+                </ListView.View>
+            </ListView>
+        </GroupBox>
+    </DockPanel>
+</Window>

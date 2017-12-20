@@ -55,6 +55,7 @@
     <Compile Include="Entity\Business_AssignmentDetail.cs" />
     <Compile Include="Entity\Business_SubProject.cs" />
     <Compile Include="Entity\Common_Department.cs" />
+    <Compile Include="Entity\Common_Employee.cs" />
     <Compile Include="Entity\Common_Enumeration.cs" />
     <Compile Include="Entity\Common_PaperSize.cs" />
     <Compile Include="Entity\Warehouse_Category.cs" />

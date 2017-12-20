@@ -9,5 +9,7 @@ namespace EasySystem.Core.Entity
     {
         public int DepartmentID { get; set; }
         public string DepartmentName { get; set; }
+        public int? ParentDepartmentID { get; set; }
+        public Common_Department ParentDepartment { get; set; }
     }
 }
