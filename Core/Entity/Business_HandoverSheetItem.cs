@@ -5,10 +5,10 @@ using System.Text;
 
 namespace EasySystem.Core.Entity
 {
-    public class Business_StampSheetItem
+    public class Business_HandoverSheetItem
     {
-        public int StampSheetItemID { get; set; }
-        public string StampSheetID { get; set; }
+        public long HandoverSheetItemID { get; set; }
+        public string HandoverSheetID { get; set; }
         public string ItemName { get; set; }
         public string Subject { get; set; }
         public int? A0 { get; set; }
@@ -17,7 +17,7 @@ namespace EasySystem.Core.Entity
         public int? A3 { get; set; }
         public string Description { get; set; }
 
-        public Business_StampSheetItem(Business_TaskItem taskItem)
+        public Business_HandoverSheetItem(Business_TaskItem taskItem)
         {
             this.ItemName = taskItem.ItemName;
             this.Subject = taskItem.Subject;

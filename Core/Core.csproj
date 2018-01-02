@@ -49,6 +49,8 @@
     <Compile Include="Controllers\ProjectController.cs" />
     <Compile Include="Controllers\TaskController.cs" />
     <Compile Include="Controllers\WarehouseController.cs" />
+    <Compile Include="Entity\Business_HandoverSheet.cs" />
+    <Compile Include="Entity\Business_HandoverSheetItem.cs" />
     <Compile Include="Entity\Business_StampSheet.cs" />
     <Compile Include="Entity\Business_StampSheetItem.cs" />
     <Compile Include="Entity\Business_Task.cs" />

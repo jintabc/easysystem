@@ -88,6 +88,12 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="CostSheetWindow.xaml.cs">
+      <DependentUpon>CostSheetWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="HandoverSheetWindow.xaml.cs">
+      <DependentUpon>HandoverSheetWindow.xaml</DependentUpon>
+    </Compile>
     <Compile Include="StampSheetWindow.xaml.cs">
       <DependentUpon>StampSheetWindow.xaml</DependentUpon>
     </Compile>
@@ -125,6 +131,14 @@
     <Compile Include="TestWindow.xaml.cs">
       <DependentUpon>TestWindow.xaml</DependentUpon>
     </Compile>
+    <Page Include="CostSheetWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="HandoverSheetWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="StampSheetWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>

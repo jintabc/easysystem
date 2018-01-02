@@ -1,0 +1,60 @@
+﻿<Window x:Class="EasySystem.WPFUI.HandoverSheetWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:EasySystem.WPFUI"
+        mc:Ignorable="d"
+        Title="成果交接单" Style="{StaticResource DefaultWindowStyle}">
+    <StackPanel>
+        <GroupBox Header="基本信息" Margin="5">
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="100"/>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="100"/>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="100"/>
+                    <ColumnDefinition Width="*"/>
+                </Grid.ColumnDefinitions>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="40"/>
+                    <RowDefinition Height="40"/>
+                    <RowDefinition Height="40"/>
+                    <RowDefinition Height="40"/>
+                    <RowDefinition Height="100"/>
+                </Grid.RowDefinitions>
+
+                <Label Content="项目名称" Style="{StaticResource DefaultLabelStyle}" Grid.Column="0" Grid.Row="0" />
+                <TextBox Text="{Binding Path=Project.ProjectName}" Style="{StaticResource DefaultTextStyle}" Grid.Column="1" Grid.Row="0" Grid.ColumnSpan="4"/>
+
+                <Label Content="建设单位" Style="{StaticResource DefaultLabelStyle}" Grid.Column="0" Grid.Row="1"/>
+                <TextBox Text="{Binding Path=Project.Company}" Style="{StaticResource DefaultTextStyle}" Grid.Column="1" Grid.Row="1" Grid.ColumnSpan="4"/>
+                <Label Content="设计部门" Style="{StaticResource DefaultLabelStyle}" Grid.Column="0" Grid.Row="2"/>
+                <ComboBox x:Name="cboDepartments" DisplayMemberPath="DepartmentName" SelectedValuePath="DepartmentID" SelectedValue="{Binding Path=Department.DepartmentID}" Style="{StaticResource DefaultComboBoxStyle}" Grid.Column="1" Grid.Row="2"/>
+                <Label Content="设计号" Style="{StaticResource DefaultLabelStyle}" Grid.Column="2" Grid.Row="2"/>
+                <TextBox Text="{Binding Path=Project.DesignNo}" Style="{StaticResource DefaultTextStyle}" Grid.Column="3" Grid.Row="2"/>
+                <Label Content="项目负责人" Style="{StaticResource DefaultLabelStyle}" Grid.Column="4" Grid.Row="2"/>
+                <TextBox Text="{Binding Path=Project.ProjectLeader}" Style="{StaticResource DefaultTextStyle}" Grid.Column="5" Grid.Row="2"/>
+                <Label Content="交接日期" Style="{StaticResource DefaultLabelStyle}" Grid.Column="0" Grid.Row="3"/>
+                <DatePicker SelectedDate="{Binding Path=StampDate}"  Style="{StaticResource DefaultDatePickerStyle}" Grid.Column="1" Grid.Row="3"/>
+                <Label Content="备注" Style="{StaticResource DefaultLabelStyle}" Grid.Column="0" Grid.Row="4"/>
+                <TextBox Text="{Binding Path=Remarks}" Style="{StaticResource MultilineTextStyle}" Grid.Column="1" Grid.ColumnSpan="4" Grid.Row="4"/>
+            </Grid>
+        </GroupBox>
+        <GroupBox Header="成果明细" Margin="5">
+            <DataGrid>
+                <DataGrid.Columns>
+                    <DataGridTextColumn Header="序号" Binding="{Binding}"/>
+                    <DataGridTextColumn Header="名称" Binding="{Binding Path=ItemName}"/>
+                    <DataGridTextColumn Header="专业" Binding="{Binding Path=Subject}"/>
+                    <DataGridTextColumn Header="A0" Binding="{Binding Path=A0}"/>
+                    <DataGridTextColumn Header="A1" Binding="{Binding Path=A1}"/>
+                    <DataGridTextColumn Header="A2" Binding="{Binding Path=A2}"/>
+                    <DataGridTextColumn Header="A3" Binding="{Binding Path=A3}"/>
+                    <DataGridTextColumn Header="备注" Binding="{Binding Path=Remarks}"/>
+                </DataGrid.Columns>
+            </DataGrid>
+        </GroupBox>
+    </StackPanel>
+</Window>
