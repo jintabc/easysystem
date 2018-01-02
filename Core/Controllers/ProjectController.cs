@@ -24,7 +24,7 @@ namespace EasySystem.Core.Controller
                 new SqlParameter("@ProjectName",project.ProjectName),
                 new SqlParameter("@Company",project.Company),
                 new SqlParameter("@ProjectLeader",project.ProjectLeader),
-                new SqlParameter("@Result",DbType.Int32)
+                new SqlParameter("@ID",DbType.Int32)
             };
             parameters[4].Direction = ParameterDirection.Output;
             DBHelper.ExecuteNonQuery(cmdText,parameters,CommandType.StoredProcedure);
@@ -42,7 +42,7 @@ namespace EasySystem.Core.Controller
         /// <param name="project">需修改项目</param>
         public int UpdateProject(Business_Project project)
         {
-            string cmdText = @"UPDATE [EasySystem].[dbo].[Business_Project]
+            string cmdText = @"UPDATE [EasySystem].[dbo].[Business_Projects]
    SET [DesignNo] = @DesignNo
       ,[ProjectName] = @ProjectName
       ,[Company] = @Company
@@ -66,7 +66,7 @@ namespace EasySystem.Core.Controller
         public List<Business_Project> GetProjects()
         {
             List<Business_Project> projects = null;
-            string cmdText = "SELECT * FROM Business_Project";
+            string cmdText = "SELECT * FROM Business_Projects";
             using (SqlDataReader reader = DBHelper.ExecuteReader(cmdText,CommandType.Text))
             {
                 if (reader.HasRows)
@@ -77,7 +77,7 @@ namespace EasySystem.Core.Controller
                         Business_Project project = new Business_Project()
                         {
                             ProjectID = Convert.ToInt32(reader["ProjectID"]),
-                            DesignNo = reader["DesignNo"] as string,
+                            DesignNo = (reader["DesignNo"] as string).TrimEnd(' '),
                             ProjectName = reader["ProjectName"] as string,
                             Company = reader["Company"] as string,
                             ProjectLeader = reader["ProjectLeader"] as string

@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:EasySystem.WPFUI"
         mc:Ignorable="d"
-        Title="ProjectWindow" Height="768" Width="1024" Loaded="Window_Loaded" MinWidth="1024" MinHeight="768">
+        Title="项目列表" Style="{StaticResource DefaultWindowStyle}" Loaded="Window_Loaded">
     <Window.Resources>
         <ControlTemplate x:Key="EditZone">
             <Grid>
@@ -69,13 +69,13 @@
         </ListBox>
         <TabControl x:Name="tbEditZone" Margin="10,0,0,0" Height="auto" DockPanel.Dock="Right">
             <TabItem Header="新增">
-                <StackPanel Margin="10" HorizontalAlignment="Center">
+                <StackPanel Margin="10" HorizontalAlignment="Stretch">
                     <ContentControl Content="{Binding}" Template="{StaticResource ResourceKey=EditZone}" />
                     <Button x:Name="button" Content="添加" Style="{DynamicResource DefaultButtonStyle}" Click="Add_Click"/>
                 </StackPanel>
             </TabItem>
             <TabItem Header="修改">
-                <StackPanel Margin="10" HorizontalAlignment="Center">
+                <StackPanel Margin="10" HorizontalAlignment="Stretch">
                     <ContentControl x:Name="ccEdit" Template="{StaticResource ResourceKey=EditZone}" />
                     <Button x:Name="button1" Content="修改" Style="{DynamicResource DefaultButtonStyle}" Click="Update_Click"/>
                 </StackPanel>

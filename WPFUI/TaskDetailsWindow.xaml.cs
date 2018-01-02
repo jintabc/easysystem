@@ -16,26 +16,23 @@ using System.Windows.Shapes;
 namespace EasySystem.WPFUI
 {
     /// <summary>
-    /// TaskListWindow.xaml 的交互逻辑
+    /// TaskDetailWindow.xaml 的交互逻辑
     /// </summary>
-    public partial class TaskListWindow : Window
+    public partial class TaskDetailsWindow : Window
     {
         TaskController controller = new TaskController();
-
-        public TaskListWindow()
+        Business_Task task = null;
+        public TaskDetailsWindow(int taskId)
         {
             InitializeComponent();
-            lstTasks.ItemsSource = controller.GetTaskListModel();
+            task = controller.GetTask(taskId);
+            this.DataContext = task;
         }
 
-        private void lstTasks_MouseDoubleClick(object sender, MouseButtonEventArgs e)
+        private void miGenerateStampSheet_Click(object sender, RoutedEventArgs e)
         {
-            if(lstTasks.SelectedItem != null)
-            {
-                Business_TaskListModel model = (Business_TaskListModel)lstTasks.SelectedItem;
-                TaskDetailsWindow window = new TaskDetailsWindow(model.TaskID);
-                window.Show();
-            }
+            StampSheetWindow window = new StampSheetWindow(task);
+            window.ShowDialog();
         }
     }
 }

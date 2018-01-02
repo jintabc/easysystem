@@ -40,15 +40,19 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Controller\CategoryController.cs" />
-    <Compile Include="Controller\DBHelper.cs" />
-    <Compile Include="Controller\GoodsController.cs" />
-    <Compile Include="Controller\InventoryController.cs" />
-    <Compile Include="Controller\SupplierController.cs" />
-    <Compile Include="Controller\ProjectController.cs" />
-    <Compile Include="Controller\WarehouseController.cs" />
-    <Compile Include="Entity\Business_BlueprintRecord.cs" />
-    <Compile Include="Entity\Business_BlurprintRecordItem.cs" />
+    <Compile Include="Controllers\CategoryController.cs" />
+    <Compile Include="Controllers\DBHelper.cs" />
+    <Compile Include="Controllers\DepartmentController.cs" />
+    <Compile Include="Controllers\GoodsController.cs" />
+    <Compile Include="Controllers\InventoryController.cs" />
+    <Compile Include="Controllers\SupplierController.cs" />
+    <Compile Include="Controllers\ProjectController.cs" />
+    <Compile Include="Controllers\TaskController.cs" />
+    <Compile Include="Controllers\WarehouseController.cs" />
+    <Compile Include="Entity\Business_StampSheet.cs" />
+    <Compile Include="Entity\Business_StampSheetItem.cs" />
+    <Compile Include="Entity\Business_Task.cs" />
+    <Compile Include="Entity\Business_TaskItem.cs" />
     <Compile Include="Entity\Business_ServiceType.cs" />
     <Compile Include="Entity\Business_Project.cs" />
     <Compile Include="Entity\Business_Assignment.cs" />
@@ -58,6 +62,7 @@
     <Compile Include="Entity\Common_Employee.cs" />
     <Compile Include="Entity\Common_Enumeration.cs" />
     <Compile Include="Entity\Common_PaperSize.cs" />
+    <Compile Include="Entity\Models\Business_TaskListModel.cs" />
     <Compile Include="Entity\Warehouse_Category.cs" />
     <Compile Include="Entity\Storage_DeliveryOrder.cs" />
     <Compile Include="Entity\Storage_GodownEntry.cs" />
