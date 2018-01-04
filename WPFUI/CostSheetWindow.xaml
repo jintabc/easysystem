@@ -45,6 +45,8 @@
                 <DataGrid.Columns>
                     <DataGridTextColumn Header="业务名称"/>
                     <DataGridTextColumn Header="尺寸"/>
+                    <DataGridTextColumn Header="数量"/>
+                    <DataGridTextColumn Header="份数"/>
                     <DataGridTextColumn Header="单价"/>
                     <DataGridTextColumn Header="备注"/>
                 </DataGrid.Columns>

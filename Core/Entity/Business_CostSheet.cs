@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Collections.ObjectModel;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
@@ -8,10 +7,10 @@ using System.Text;
 
 namespace EasySystem.Core.Entity
 {
-    public class Business_Task
+    public class Business_CostSheet
     {
         [Key]
-        public long TaskID { get; set; }
+        public string CostSheet { get; set; }
 
         [Required]
         public int ProjectID { get; set; }
@@ -19,20 +18,10 @@ namespace EasySystem.Core.Entity
         [Required]
         public int DepartmentID { get; set; }
 
-
-        public DateTime? FinishDate { get; set; }
-
-        [MaxLength(10)]
+        [Required]
         public string Contact { get; set; }
 
-
-        public string CostSheetNo { get; set; }
-        public string StampSheetNo { get; set; }
-        public string HandoverSheetNo { get; set; }
-
-
-        public Common_BusinessType BusinessType { get; set; }
-        public decimal? TotalPrice { get; set; }
+        public DateTime? FinishDate { get; set; }
 
         [ForeignKey("ProjectID")]
         public Business_Project Project { get; set; }
@@ -40,7 +29,7 @@ namespace EasySystem.Core.Entity
         [ForeignKey("DepartmentID")]
         public Common_Department Department { get; set; }
 
-        [InverseProperty("TaskID")]
-        public ObservableCollection<Business_TaskItem> Items { get; set; }
+        [InverseProperty("CostSheetID")]
+        public List<Business_CostSheetItem> Items { get; set; }
     }
 }
