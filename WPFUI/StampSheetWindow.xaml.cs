@@ -45,7 +45,32 @@ namespace EasySystem.WPFUI
         private void Button_Click(object sender, RoutedEventArgs e)
         {
             Button b = (Button)sender;
-            
+            MessageBox.Show(dgDetails.SelectedIndex.ToString());
+        }
+
+        void dgTool_LoadingRow(object sender, DataGridRowEventArgs e)
+        {
+            e.Row.Header = e.Row.GetIndex() + 1;
+        }
+
+        void dgTool_UnloadingRow(object sender, DataGridRowEventArgs e)
+        {
+            dgTool_LoadingRow(sender, e);
+            if (dgDetails.Items != null)
+            {
+                for (int i = 0; i < dgDetails.Items.Count; i++)
+                {
+                    try
+                    {
+                        DataGridRow row = dgDetails.ItemContainerGenerator.ContainerFromIndex(i) as DataGridRow;
+                        if (row != null)
+                        {
+                            row.Header = (i + 1).ToString();
+                        }
+                    }
+                    catch { }
+                }
+            }
         }
     }
 }

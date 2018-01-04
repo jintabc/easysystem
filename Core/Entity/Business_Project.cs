@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Text;
 
@@ -10,6 +11,7 @@ namespace EasySystem.Core.Entity
         /// <summary>
         /// ID
         /// </summary>
+        [Key]
         public int ProjectID { get; set; }
 
         /// <summary>

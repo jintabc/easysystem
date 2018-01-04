@@ -5,6 +5,7 @@ using System.Text;
 using System.Data.SqlClient;
 using EasySystem.Core.Entity;
 using System.Data;
+using System.Collections.ObjectModel;
 
 namespace EasySystem.Core.Controller
 {
@@ -94,7 +95,7 @@ namespace EasySystem.Core.Controller
                             CostSheetNo = reader["CostSheetNo"] as string,
                             StampSheetNo = reader["StampSheetNo"] as string,
                             HandoverSheetNo = reader["HandoverSheetNo"] as string,
-                            BusinessType = Convert.ToInt32(reader["BusinessType"])
+                            BusinessType = (Common_BusinessType)Convert.ToInt32(reader["BusinessType"])
                         };
                         if (reader["FinishDate"] is DBNull)
                         {
@@ -154,7 +155,7 @@ namespace EasySystem.Core.Controller
                             CostSheetNo = reader["CostSheetNo"] as string,
                             StampSheetNo = reader["StampSheetNo"] as string,
                             HandoverSheetNo = reader["HandoverSheetNo"] as string,
-                            BusinessType = Convert.ToInt32(reader["BusinessType"])
+                            BusinessType = (Common_BusinessType)Convert.ToInt32(reader["BusinessType"])
                         };
                         if (reader["FinishDate"] is DBNull)
                         {
@@ -228,15 +229,15 @@ namespace EasySystem.Core.Controller
         /// 获取任务明细
         /// </summary>
         /// <param name="task">任务名称</param>
-        public List<Business_TaskItem> GetTaskDetails(int taskID)
+        public ObservableCollection<Business_TaskItem> GetTaskDetails(int taskID)
         {
-            List<Business_TaskItem> taskItems = null;
+            ObservableCollection<Business_TaskItem> taskItems = null;
             string cmdText = "SELECT * FROM Business_TaskItems WHERE TaskID="+taskID;
             using (SqlDataReader reader = DBHelper.ExecuteReader(cmdText, CommandType.Text))
             {
                 if (reader.HasRows)
                 {
-                    taskItems = new List<Business_TaskItem>();
+                    taskItems = new ObservableCollection<Business_TaskItem>();
                     while (reader.Read())
                     {
                         Business_TaskItem item = new Business_TaskItem()
@@ -284,6 +285,25 @@ namespace EasySystem.Core.Controller
                 }
             }
             return taskItems;
+        }
+
+        public int InsertItem(Business_TaskItem item)
+        {
+            //string cmdText = @"Proc_InsertTaskItem";
+            //SqlParameter[] parameters = new SqlParameter[]
+            //{
+            //    new SqlParameter("@TaskID",item.Task.TaskID),
+            //    new SqlParameter("@ItemName",item.ItemName),
+            //    new SqlParameter("@Subject",item.Subject),
+            //    new SqlParameter("@A0",item.A0),
+            //    new SqlParameter("@A1",item.A0),
+            //    new SqlParameter("@A2",item.A0),
+            //    new SqlParameter("@A3",item.A0),
+            //    new SqlParameter("@Copies",item.Copies),
+            //    new SqlParameter("@Description",item.Description),
+            //    new SqlParameter("@ID",DbType.Int32)
+            //};
+            return 0;
         }
 
         public void InsertData()

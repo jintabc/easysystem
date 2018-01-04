@@ -5,9 +5,9 @@ using System.Text;
 
 namespace EasySystem.Core.Entity
 {
-    public enum Common_BussinessType
+    public enum Common_BusinessType
     {
-        Inside,Outside
+        Inside=0,Outside=1
     }
 
 

@@ -5,14 +5,14 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:EasySystem.WPFUI"
         mc:Ignorable="d"
-        Title="盖章单" Style="{StaticResource DefaultWindowStyle}">
+        Title="底图盖章单" Style="{StaticResource DefaultWindowStyle}">
     <Window.Resources>
         <DataTemplate x:Key="dtOperations">
             <Button Content="删除" Click="Button_Click" CommandParameter="{Binding Path=Index}"/>
         </DataTemplate>
     </Window.Resources>
     <StackPanel>
-        <GroupBox Header="盖章单信息" Margin="10">
+        <GroupBox Header="底图盖章单信息" Margin="10">
             <Grid>
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="100"/>
@@ -31,7 +31,7 @@
                 </Grid.RowDefinitions>
                 <Label Content="项目名称" Style="{StaticResource DefaultLabelStyle}" Grid.Column="0" Grid.Row="0" />
                 <TextBox Text="{Binding Path=Project.ProjectName}" Style="{StaticResource DefaultTextStyle}" Grid.Column="1" Grid.Row="0" Grid.ColumnSpan="4"/>
-                
+
                 <Label Content="建设单位" Style="{StaticResource DefaultLabelStyle}" Grid.Column="0" Grid.Row="1"/>
                 <TextBox Text="{Binding Path=Project.Company}" Style="{StaticResource DefaultTextStyle}" Grid.Column="1" Grid.Row="1" Grid.ColumnSpan="4"/>
                 <Label Content="设计部门" Style="{StaticResource DefaultLabelStyle}" Grid.Column="0" Grid.Row="2"/>
@@ -47,21 +47,18 @@
             </Grid>
         </GroupBox>
         <GroupBox Header="图纸明细" Margin="10">
-            <ListView x:Name="lvDetails" Height="350" DataContext="{Binding Path=Items}" ItemsSource="{Binding}">
-                <ListView.View>
-                    <GridView>
-                        <GridViewColumn Header="序号" DisplayMemberBinding="{Binding}"/>
-                        <GridViewColumn Header="名称" DisplayMemberBinding="{Binding Path=ItemName}"/>
-                        <GridViewColumn Header="专业" DisplayMemberBinding="{Binding Path=Subject}"/>
-                        <GridViewColumn Header="A0" DisplayMemberBinding="{Binding Path=A0}"/>
-                        <GridViewColumn Header="A1" DisplayMemberBinding="{Binding Path=A1}"/>
-                        <GridViewColumn Header="A2" DisplayMemberBinding="{Binding Path=A2}"/>
-                        <GridViewColumn Header="A3" DisplayMemberBinding="{Binding Path=A3}"/>
-                        <GridViewColumn Header="备注" DisplayMemberBinding="{Binding Path=Remarks}"/>
-                        <GridViewColumn Header="操作" CellTemplate="{StaticResource ResourceKey=dtOperations}" />
-                    </GridView>
-                </ListView.View>
-            </ListView>
+            <DataGrid x:Name="dgDetails" Height="350" DataContext="{Binding Path=Items}" ItemsSource="{Binding}" AutoGenerateColumns="False" LoadingRow="dgTool_LoadingRow" UnloadingRow="dgTool_UnloadingRow" RowHeight="40" SelectionMode="Single">
+                <DataGrid.Columns>
+                    <DataGridTextColumn Header="名称" ElementStyle="{StaticResource DefaultGridCellStyle}" Binding="{Binding Path=ItemName}"/>
+                    <DataGridTextColumn Header="专业" ElementStyle="{StaticResource DefaultGridCellStyle}" Binding="{Binding Path=Subject}"/>
+                    <DataGridTextColumn Header="A0" ElementStyle="{StaticResource DefaultGridCellStyle}" Binding="{Binding Path=A0}"/>
+                    <DataGridTextColumn Header="A1" ElementStyle="{StaticResource DefaultGridCellStyle}" Binding="{Binding Path=A1}"/>
+                    <DataGridTextColumn Header="A2" ElementStyle="{StaticResource DefaultGridCellStyle}" Binding="{Binding Path=A2}"/>
+                    <DataGridTextColumn Header="A3" ElementStyle="{StaticResource DefaultGridCellStyle}" Binding="{Binding Path=A3}"/>
+                    <DataGridTextColumn Header="备注" ElementStyle="{StaticResource DefaultGridCellStyle}" Binding="{Binding Path=Remarks}"/>
+                    <DataGridTemplateColumn Header="操作" CellTemplate="{StaticResource ResourceKey=dtOperations}" />
+                </DataGrid.Columns>                
+            </DataGrid>
         </GroupBox>
         <Button x:Name="btnSave" Content="保存" Style="{StaticResource DefaultButtonStyle}" />
     </StackPanel>

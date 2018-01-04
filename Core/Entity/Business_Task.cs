@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Linq;
 using System.Text;
 
@@ -15,9 +16,9 @@ namespace EasySystem.Core.Entity
         public string CostSheetNo { get; set; }
         public string StampSheetNo { get; set; }
         public string HandoverSheetNo { get; set; }
-        public int BusinessType { get; set; }
+        public Common_BusinessType BusinessType { get; set; }
         public decimal? TotalPrice { get; set; }
         
-        public List<Business_TaskItem> Items { get; set; }
+        public ObservableCollection<Business_TaskItem> Items { get; set; }
     }
 }

@@ -3,8 +3,6 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-        xmlns:c="clr-namespace:System.Windows.Controls;assembly=System.Windows.Controls.Input.Toolkit"
-        xmlns:xc="http://schemas.xceed.com/wpf/xaml/toolkit"
         xmlns:local="clr-namespace:WPFUI"
         mc:Ignorable="d"
         Title="MainWindow" Height="768" Width="1024">
@@ -71,7 +69,6 @@
                 </Grid.RowDefinitions>
                 <WrapPanel Grid.Row="0" >
                     <Label Content="业务名称" Style="{StaticResource Label}"></Label>
-                    <c:AutoCompleteBox x:Name="acbServiceType" Style="{StaticResource Short}" SelectionChanged="acbServiceType_SelectionChanged" />
                     <Label Content="尺寸" Style="{StaticResource Label}"></Label>
                     <ComboBox x:Name="cboSize" Style="{StaticResource Short}" SelectedIndex="0">
                         <ComboBoxItem>A4</ComboBoxItem>
@@ -81,12 +78,10 @@
                         <ComboBoxItem>A0</ComboBoxItem>
                     </ComboBox>
                     <Label Content="数量" Style="{StaticResource Label}"></Label>
-                    <xc:SingleUpDown x:Name="sudQuantity" Style="{StaticResource Short}" Value="1"></xc:SingleUpDown>
                     <Label Content="份数" Style="{StaticResource Label}"></Label>
-                    <xc:SingleUpDown x:Name="sudCopy" Style="{StaticResource Short}" Value="1"></xc:SingleUpDown>
                     <Label Content="备注" Style="{StaticResource Label}"></Label>
                     <TextBox x:Name="txtRemarks" Style="{StaticResource Short}"></TextBox>
-                    <Button x:Name="btnAdd" Content="添加"  Style="{StaticResource Button}" Click="Button_Click"/>
+                    <Button x:Name="btnAdd" Content="添加"  Style="{StaticResource Button}"/>
                 </WrapPanel>
                 <ListView Grid.Row="1" ItemsSource="{Binding Details}" x:Name="abc" >
                     <ListView.View>
@@ -111,12 +106,11 @@
             <ComboBoxItem>规划分院总规所</ComboBoxItem>
         </ComboBox>
         <TextBox Grid.Row="2" Grid.Column="3" Style="{StaticResource Normal}" Text="{Binding Customer}"></TextBox>
-        <c:AutoCompleteBox x:Name="acbProjectName" Grid.Row="3" Grid.Column="1" Grid.ColumnSpan="3" Style="{StaticResource LongControl}" ItemsSource="{Binding}" Text="{Binding Project}" ></c:AutoCompleteBox>
         <TextBox Grid.Row="4" Grid.Column="1" Grid.ColumnSpan="3" Style="{StaticResource LongControl}" Text="{Binding SubjectName}"></TextBox>
         <WrapPanel Grid.Row="5" Grid.Column="1" Grid.ColumnSpan="3">
             <RadioButton Content="院内" Style="{StaticResource Short}" IsChecked="True"></RadioButton>
             <RadioButton Content="加晒" Style="{StaticResource Short}"></RadioButton>
         </WrapPanel>
-        <Button Content="确定" Grid.Row="8" Grid.Column="4" Style="{StaticResource Button}" Click="Button_Click_1"></Button>
+        <Button Content="确定" Grid.Row="8" Grid.Column="4" Style="{StaticResource Button}"></Button>
     </Grid>
 </Window>

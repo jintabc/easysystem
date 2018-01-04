@@ -67,46 +67,42 @@ namespace EasySystem.WPFUI
 
             Cell cell1 = new Cell();
             cell1.SetFont(font);
-            cell1.Add("项目名称");
+            cell1.Add(new Paragraph("项目名称"));
             table1.AddCell(cell1);
 
             Cell cell2 = new Cell(1, 3);
             cell2.SetFont(font);
-            cell2.Add("");
             table1.AddCell(cell2);
 
             Cell cell3 = new Cell();
             cell3.SetFont(font);
-            cell3.Add("建设单位");
+            cell3.Add(new Paragraph("建设单位"));
             table1.AddCell(cell3);
 
             Cell cell4 = new Cell(1, 3);
             cell4.SetFont(font);
-            cell4.Add("");
             table1.AddCell(cell4);
 
             Cell cell5 = new Cell();
             cell5.SetFont(font);
-            cell5.Add("设计部门");
+            cell5.Add(new Paragraph("设计部门"));
             table1.AddCell(cell5);
 
             Cell cel6 = new Cell();
             cel6.SetFont(font);
-            cel6.Add("");
             table1.AddCell(cel6);
 
             Cell cel7 = new Cell();
             cel7.SetFont(font);
-            cel7.Add("日期");
+            cel7.Add(new Paragraph("日期"));
             table1.AddCell(cel7);
 
             Cell cel8 = new Cell();
             cel8.SetFont(font);
-            cel8.Add("");
             table1.AddCell(cel8);
 
             Cell cell = new Cell(1, 4);
-            cell.Add("成果类别及数量");
+            cell.Add(new Paragraph("成果类别及数量"));
             cell.SetFont(font);
             cell.SetTextAlignment(TextAlignment.CENTER);
             table1.AddCell(cell);
@@ -120,31 +116,31 @@ namespace EasySystem.WPFUI
             Cell seq = new Cell();
             seq.SetFont(font);
             seq.SetTextAlignment(TextAlignment.CENTER);
-            seq.Add("序号");
+            seq.Add(new Paragraph("序号"));
             table.AddHeaderCell(seq);
 
             Cell name = new Cell();
             name.SetFont(font);
             name.SetTextAlignment(TextAlignment.CENTER);
-            name.Add("名称");
+            name.Add(new Paragraph("名称"));
             table.AddHeaderCell(name);
 
             Cell subject = new Cell();
             subject.SetFont(font);
             subject.SetTextAlignment(TextAlignment.CENTER);
-            subject.Add("专业");
+            subject.Add(new Paragraph("专业"));
             table.AddHeaderCell(subject);
 
             Cell quantity = new Cell();
             quantity.SetFont(font);
             quantity.SetTextAlignment(TextAlignment.CENTER);
-            quantity.Add("数量");
+            quantity.Add(new Paragraph("数量"));
             table.AddHeaderCell(quantity);
 
             Cell comments = new Cell();
             comments.SetFont(font);
             comments.SetTextAlignment(TextAlignment.CENTER);
-            comments.Add("备注");
+            comments.Add(new Paragraph("备注"));
             table.AddHeaderCell(comments);
 
 

@@ -5,9 +5,10 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:EasySystem.WPFUI"
         mc:Ignorable="d"
-        xmlns:tool="http://schemas.microsoft.com/winfx/2006/xaml/presentation/toolkit/extended"
-        xmlns:toolkit="http://schemas.xceed.com/wpf/xaml/toolkit"
-        Title="任务详情" Style="{StaticResource DialogWindowStyle}" Width="800" Height="800">
+        Title="任务详情" Style="{StaticResource DefaultWindowStyle}">
+    <Window.Resources>
+        <local:BusinessTypeConverter x:Key="asdf"/>
+    </Window.Resources>
     <DockPanel>
         <Menu DockPanel.Dock="Top">
             <MenuItem Header="操作">
@@ -33,21 +34,21 @@
                     <RowDefinition Height="40"/>
                 </Grid.RowDefinitions>
                 <Label Content="项目名称" Style="{StaticResource DefaultLabelStyle}" Grid.Column="0" Grid.Row="0" />
-                <Label Content="{Binding Path=Project.ProjectName}" Style="{StaticResource LongLabelStyle}" Grid.Column="1" Grid.Row="0" Grid.ColumnSpan="4"/>
+                <TextBox Text="{Binding Path=Project.ProjectName}" Style="{StaticResource LongTextStyle}" Grid.Column="1" Grid.Row="0" Grid.ColumnSpan="4"/>
                 <Label Content="建设单位" Style="{StaticResource DefaultLabelStyle}" Grid.Column="0" Grid.Row="1"/>
-                <Label Content="{Binding Path=Project.Company}" Style="{StaticResource LongLabelStyle}" Grid.Column="1" Grid.Row="1" Grid.ColumnSpan="4"/>
+                <TextBox Text="{Binding Path=Project.Company}" Style="{StaticResource LongTextStyle}" Grid.Column="1" Grid.Row="1" Grid.ColumnSpan="4"/>
                 <Label Content="设计部门" Style="{StaticResource DefaultLabelStyle}" Grid.Column="0" Grid.Row="2"/>
-                <Label Content="{Binding Path=Department.DepartmentName}" Style="{StaticResource LongLabelStyle}" Grid.Column="1" Grid.Row="2"/>
+                <ComboBox x:Name="cboDepartment" SelectedValue="{Binding Path=Department.DepartmentID}" DisplayMemberPath="DepartmentName" SelectedValuePath="DepartmentID" Style="{StaticResource DefaultComboBoxStyle}" Grid.Column="1" Grid.Row="2"/>
                 <Label Content="设计号" Style="{StaticResource DefaultLabelStyle}" Grid.Column="2" Grid.Row="2"/>
-                <Label Content="{Binding Path=Project.DesignNo}" Style="{StaticResource LongLabelStyle}" Grid.Column="3" Grid.Row="2"/>
+                <TextBox Text="{Binding Path=Project.DesignNo}" Style="{StaticResource DefaultTextStyle}" Grid.Column="3" Grid.Row="2"/>
                 <Label Content="项目负责人" Style="{StaticResource DefaultLabelStyle}" Grid.Column="4" Grid.Row="2"/>
-                <Label Content="{Binding Path=Project.ProjectLeader}" Style="{StaticResource LongLabelStyle}" Grid.Column="5" Grid.Row="2"/>
+                <TextBox Text="{Binding Path=Project.ProjectLeader}" Style="{StaticResource DefaultTextStyle}" Grid.Column="5" Grid.Row="2"/>
                 <Label Content="经办人" Style="{StaticResource DefaultLabelStyle}" Grid.Column="0" Grid.Row="3"/>
-                <Label Content="{Binding Path=Contact}" Style="{StaticResource LongLabelStyle}" Grid.Column="1" Grid.Row="3"/>
+                <TextBox Text="{Binding Path=Contact}" Style="{StaticResource DefaultTextStyle}" Grid.Column="1" Grid.Row="3"/>
                 <Label Content="是否加晒" Style="{StaticResource DefaultLabelStyle}" Grid.Column="2" Grid.Row="3"/>
-                <Label Content="{Binding Path=BusinessType}" Style="{StaticResource LongLabelStyle}" Grid.Column="3" Grid.Row="3"/>
+                <CheckBox IsChecked="{Binding Path=BusinessType,Converter={StaticResource ResourceKey=asdf}}" Style="{StaticResource DefaultCheckBoxStyle}" Grid.Column="3" Grid.Row="3"/>
                 <Label Content="完成日期" Style="{StaticResource DefaultLabelStyle}" Grid.Column="4" Grid.Row="3"/>
-                <Label Content="{Binding Path=FinishDate}" Style="{StaticResource LongLabelStyle}" Grid.Column="1" Grid.Row="3"/>
+                <DatePicker DisplayDate="{Binding Path=FinishDate}" Style="{StaticResource DefaultDatePickerStyle}" Grid.Column="5" Grid.Row="3"/>
                 <Label Content="成本单编号" Style="{StaticResource DefaultLabelStyle}" Grid.Column="0" Grid.Row="4"/>
                 <Label Style="{StaticResource LongLabelStyle}" Grid.Column="1" Grid.Row="4">
                     <Hyperlink NavigateUri="2" >
@@ -67,27 +68,61 @@
                     </Hyperlink>
                 </Label>
                 <Label Content="总金额" Style="{StaticResource DefaultLabelStyle}" Grid.Column="0" Grid.Row="5"/>
-                <Label Content="" Style="{StaticResource LongLabelStyle}" Grid.Column="1" Grid.Row="5"/>                
+                <Label Content="" Style="{StaticResource LongLabelStyle}" Grid.Column="1" Grid.Row="5"/>
             </Grid>
         </GroupBox>
-        <GroupBox Header="详细信息" Margin="10" DockPanel.Dock="Bottom">
-            <ListView x:Name="lvTaskItems" ScrollViewer.VerticalScrollBarVisibility="Visible" ItemsSource="{Binding  Path=Items}">
-                <ListView.View>
-                    <GridView>
-                        <GridView.Columns>
-                            <GridViewColumn Header="序号" DisplayMemberBinding="{Binding Path=TaskID}" />
-                            <GridViewColumn Header="名称" DisplayMemberBinding="{Binding Path=ItemName}" />
-                            <GridViewColumn Header="专业" DisplayMemberBinding="{Binding Path=Subject}" />
-                            <GridViewColumn Header="A0" DisplayMemberBinding="{Binding Path=A0}" />
-                            <GridViewColumn Header="A1" DisplayMemberBinding="{Binding Path=A1}" />
-                            <GridViewColumn Header="A2" DisplayMemberBinding="{Binding Path=A2}"/>
-                            <GridViewColumn Header="A3" DisplayMemberBinding="{Binding Path=A3}" />
-                            <GridViewColumn Header="份数" DisplayMemberBinding="{Binding Path=Copies}"/>
-                            <GridViewColumn Header="备注" DisplayMemberBinding="{Binding Path=Description}" />
-                        </GridView.Columns>
-                    </GridView>
-                </ListView.View>
-            </ListView>
+        <GroupBox Header="详细信息" Margin="10">
+            <DataGrid x:Name="dgTaskItems" ScrollViewer.VerticalScrollBarVisibility="Visible" ItemsSource="{Binding Path=Items}" Style="{StaticResource DataGridStyle}" LoadingRow="dgTool_LoadingRow" UnloadingRow="dgTool_UnloadingRow" SelectionChanged="dgTaskItems_SelectionChanged">
+                <DataGrid.Columns>
+                    <DataGridTextColumn Header="名称" Width="100" Binding="{Binding Path=ItemName}" />
+                    <DataGridTextColumn Header="专业" Width="80" Binding="{Binding Path=Subject}" />
+                    <DataGridTextColumn Header="A0" Width="40" Binding="{Binding Path=A0}" />
+                    <DataGridTextColumn Header="A1" Width="40" Binding="{Binding Path=A1}" />
+                    <DataGridTextColumn Header="A2" Width="40" Binding="{Binding Path=A2}"/>
+                    <DataGridTextColumn Header="A3" Width="40" Binding="{Binding Path=A3}" />
+                    <DataGridTextColumn Header="份数" Width="40" Binding="{Binding Path=Copies}"/>
+                    <DataGridTextColumn Header="备注" Width="100" Binding="{Binding Path=Description}" />
+                </DataGrid.Columns>
+            </DataGrid>
+        </GroupBox>
+        <GroupBox x:Name="gbItemInfo" Header="添加记录" Margin="10">
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="100" />
+                    <ColumnDefinition Width="1*" />
+                    <ColumnDefinition Width="100" />
+                    <ColumnDefinition Width="1*" />
+                </Grid.ColumnDefinitions>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="40"/>
+                    <RowDefinition Height="40"/>
+                    <RowDefinition Height="40"/>
+                    <RowDefinition Height="40"/>
+                    <RowDefinition Height="40"/>
+                    <RowDefinition Height="40"/>
+                    <RowDefinition Height="40"/>
+                </Grid.RowDefinitions>
+                <Label Content="名称" Style="{StaticResource DefaultLabelStyle}" Grid.Row="0" Grid.Column="0"/>
+                <TextBox Text="{Binding Path=ItemName}" Style="{StaticResource DefaultTextStyle}" Grid.Row="0" Grid.Column="1" Grid.ColumnSpan="3"/>
+                <Label Content="专业" Style="{StaticResource DefaultLabelStyle}" Grid.Row="1" Grid.Column="0"/>
+                <TextBox Text="{Binding Path=Subject}" Style="{StaticResource DefaultTextStyle}" Grid.Row="1" Grid.Column="1" Grid.ColumnSpan="3"/>
+                <Label Content="A0" Style="{StaticResource DefaultLabelStyle}" Grid.Row="2" Grid.Column="0"/>
+                <TextBox Text="{Binding Path=A0}" Style="{StaticResource DefaultTextStyle}" Grid.Row="2" Grid.Column="1"/>
+                <Label Content="A1" Style="{StaticResource DefaultLabelStyle}" Grid.Row="2" Grid.Column="2"/>
+                <TextBox Text="{Binding Path=A1}" Style="{StaticResource DefaultTextStyle}" Grid.Row="2" Grid.Column="3"/>
+                <Label Content="A2" Style="{StaticResource DefaultLabelStyle}" Grid.Row="3" Grid.Column="0"/>
+                <TextBox Text="{Binding Path=A2}" Style="{StaticResource DefaultTextStyle}" Grid.Row="3" Grid.Column="1"/>
+                <Label Content="A3" Style="{StaticResource DefaultLabelStyle}" Grid.Row="3" Grid.Column="2"/>
+                <TextBox Text="{Binding Path=A3}" Style="{StaticResource DefaultTextStyle}" Grid.Row="3" Grid.Column="3"/>
+                <Label Content="份数" Style="{StaticResource DefaultLabelStyle}" Grid.Row="4" Grid.Column="0"/>
+                <TextBox Text="{Binding Path=Copies}" Style="{StaticResource DefaultTextStyle}" Grid.Row="4" Grid.Column="1"/>
+                <Label Content="备注" Style="{StaticResource DefaultLabelStyle}" Grid.Row="5" Grid.Column="0"/>
+                <TextBox Text="{Binding Path=Description}" Style="{StaticResource DefaultTextStyle}" Grid.Row="5" Grid.Column="1" Grid.ColumnSpan="5"/>
+                <WrapPanel HorizontalAlignment="Center" Grid.Row="6" Grid.Column="0" Grid.ColumnSpan="4">
+                    <Button x:Name="btnNew" Content="新记录" Style="{StaticResource DefaultButtonStyle}" Grid.Row="6" Grid.Column="0" Grid.ColumnSpan="4" Click="btnNew_Click"/>
+                    <Button x:Name="btnSave" Content="保存" Style="{StaticResource DefaultButtonStyle}" Grid.Row="6" Grid.Column="0" Grid.ColumnSpan="4" Click="btnSave_Click"/>
+                </WrapPanel>
+            </Grid>
         </GroupBox>
     </DockPanel>
 </Window>
