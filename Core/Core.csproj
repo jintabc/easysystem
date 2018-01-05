@@ -60,7 +60,7 @@
     <Compile Include="Entity\Business_CostSheetItem.cs" />
     <Compile Include="Entity\Business_HandoverSheet.cs" />
     <Compile Include="Entity\Business_HandoverSheetItem.cs" />
-    <Compile Include="Entity\Business_Pricecs.cs" />
+    <Compile Include="Entity\Business_Price.cs" />
     <Compile Include="Entity\Business_StampSheet.cs" />
     <Compile Include="Entity\Business_StampSheetItem.cs" />
     <Compile Include="Entity\Business_Task.cs" />

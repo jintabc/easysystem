@@ -7,7 +7,7 @@ using System.Text;
 
 namespace EasySystem.Core.Entity
 {
-    public class Business_Pricecs
+    public class Business_Price
     {
         [Key]
         public int ServiceTypeID { get; set; }

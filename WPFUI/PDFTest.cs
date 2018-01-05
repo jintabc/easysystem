@@ -25,52 +25,57 @@ namespace EasySystem.WPFUI
         public static void Write()
         {
             PdfDocument pdfDoc = new PdfDocument(new PdfWriter("D:\\output.pdf"));
-            Document doc = new Document(pdfDoc, PageSize.A5);
-
+            Document doc = new Document(pdfDoc, PageSize.A4);
+            doc.SetMargins(CentimeterToPoint(10f), CentimeterToPoint(0.8f), CentimeterToPoint(1f), CentimeterToPoint(1.2f));
             PdfFont font = PdfFontFactory.CreateFont(FONT, PdfEncodings.IDENTITY_H, false);
 
             PageXofY e = new PageXofY(pdfDoc);
 
-            pdfDoc.AddEventHandler(PdfDocumentEvent.END_PAGE,e );
+            pdfDoc.AddEventHandler(PdfDocumentEvent.END_PAGE, e);
 
 
 
 
             Paragraph title = new Paragraph("设计成果交接单");
-            title.SetWidth(CentimeterToPoint(12.7f));
+            title.SetWidth(CentimeterToPoint(19f));
             title.SetFont(font);
             title.SetTextAlignment(TextAlignment.CENTER);
             doc.Add(title);
 
             Paragraph p = new Paragraph();
-            p.SetWidth(CentimeterToPoint(12.7f));
+            p.SetWidth(CentimeterToPoint(19f));
             p.SetFont(font);
+            p.SetTextAlignment(TextAlignment.JUSTIFIED);
 
-            Text t1 = new Text("编号:");
+            Text t1 = new Text("编号：");
             t1.SetTextAlignment(TextAlignment.LEFT);
 
-            Text t2 = new Text("第1页");
+            TabStop tab = new TabStop(12f, TabAlignment.RIGHT);
+
+            Text t2 = new Text("日期：" + DateTime.Now.ToString("yyyy年MM月dd日"));
             t2.SetTextAlignment(TextAlignment.RIGHT);
 
-            TabStop tapStop = new TabStop(CentimeterToPoint(10), TabAlignment.RIGHT);
-            Tab tab = new Tab();
-
-            p.AddTabStops(new TabStop[] { tapStop });
             p.Add(t1);
-            p.Add(tab);
+            p.AddTabStops(tab);
             p.Add(t2);
-
             doc.Add(p);
 
-            Table table1 = new Table(new float[] { CentimeterToPoint(2), CentimeterToPoint(4.35f), CentimeterToPoint(2), CentimeterToPoint(4.35f) });
-            table1.SetWidth(CentimeterToPoint(12.7f));
+            Table table1 = new Table(new float[] {
+                CentimeterToPoint(2.35f),
+                CentimeterToPoint(4f),
+                CentimeterToPoint(2.35f),
+                CentimeterToPoint(4f),
+                CentimeterToPoint(2.3f),
+                CentimeterToPoint(4f)
+            });
+            table1.SetWidth(CentimeterToPoint(19f));
 
             Cell cell1 = new Cell();
             cell1.SetFont(font);
             cell1.Add(new Paragraph("项目名称"));
             table1.AddCell(cell1);
 
-            Cell cell2 = new Cell(1, 3);
+            Cell cell2 = new Cell(1, 5);
             cell2.SetFont(font);
             table1.AddCell(cell2);
 
@@ -79,7 +84,7 @@ namespace EasySystem.WPFUI
             cell3.Add(new Paragraph("建设单位"));
             table1.AddCell(cell3);
 
-            Cell cell4 = new Cell(1, 3);
+            Cell cell4 = new Cell(1, 5);
             cell4.SetFont(font);
             table1.AddCell(cell4);
 
@@ -94,14 +99,24 @@ namespace EasySystem.WPFUI
 
             Cell cel7 = new Cell();
             cel7.SetFont(font);
-            cel7.Add(new Paragraph("日期"));
+            cel7.Add(new Paragraph("设计号"));
             table1.AddCell(cel7);
 
             Cell cel8 = new Cell();
             cel8.SetFont(font);
             table1.AddCell(cel8);
 
-            Cell cell = new Cell(1, 4);
+
+            Cell cel9 = new Cell();
+            cel9.SetFont(font);
+            cel9.Add(new Paragraph("项目负责人"));
+            table1.AddCell(cel9);
+
+            Cell cel10 = new Cell();
+            cel10.SetFont(font);
+            table1.AddCell(cel10);
+
+            Cell cell = new Cell(1, 6);
             cell.Add(new Paragraph("成果类别及数量"));
             cell.SetFont(font);
             cell.SetTextAlignment(TextAlignment.CENTER);
@@ -109,8 +124,19 @@ namespace EasySystem.WPFUI
 
             doc.Add(table1);
 
-            Table table = new Table(new float[] { CentimeterToPoint(1.2f), CentimeterToPoint(3.75f), CentimeterToPoint(2.55f), CentimeterToPoint(3.25f), CentimeterToPoint(2f) });
-            table.SetWidth(CentimeterToPoint(12.7f));
+            Table table = new Table(new float[] {
+                CentimeterToPoint(1.5f),
+                CentimeterToPoint(4f),
+                CentimeterToPoint(3f),
+                CentimeterToPoint(1f),
+                CentimeterToPoint(1f),
+                CentimeterToPoint(1f),
+                CentimeterToPoint(1f),
+                CentimeterToPoint(1f),
+                CentimeterToPoint(1.5f),
+                CentimeterToPoint(4f)
+            });
+            table.SetWidth(CentimeterToPoint(19f));
 
 
             Cell seq = new Cell();
@@ -131,11 +157,41 @@ namespace EasySystem.WPFUI
             subject.Add(new Paragraph("专业"));
             table.AddHeaderCell(subject);
 
-            Cell quantity = new Cell();
-            quantity.SetFont(font);
-            quantity.SetTextAlignment(TextAlignment.CENTER);
-            quantity.Add(new Paragraph("数量"));
-            table.AddHeaderCell(quantity);
+            Cell A0 = new Cell();
+            A0.SetFont(font);
+            A0.SetTextAlignment(TextAlignment.CENTER);
+            A0.Add(new Paragraph("A0"));
+            table.AddHeaderCell(A0);
+
+            Cell A1 = new Cell();
+            A1.SetFont(font);
+            A1.SetTextAlignment(TextAlignment.CENTER);
+            A1.Add(new Paragraph("A1"));
+            table.AddHeaderCell(A1);
+
+            Cell A2 = new Cell();
+            A2.SetFont(font);
+            A2.SetTextAlignment(TextAlignment.CENTER);
+            A2.Add(new Paragraph("A2"));
+            table.AddHeaderCell(A2);
+
+            Cell A3 = new Cell();
+            A3.SetFont(font);
+            A3.SetTextAlignment(TextAlignment.CENTER);
+            A3.Add(new Paragraph("A3"));
+            table.AddHeaderCell(A3);
+
+            Cell A4 = new Cell();
+            A4.SetFont(font);
+            A4.SetTextAlignment(TextAlignment.CENTER);
+            A4.Add(new Paragraph("A4"));
+            table.AddHeaderCell(A4);
+
+            Cell Copies = new Cell();
+            Copies.SetFont(font);
+            Copies.SetTextAlignment(TextAlignment.CENTER);
+            Copies.Add(new Paragraph("份数"));
+            table.AddHeaderCell(Copies);
 
             Cell comments = new Cell();
             comments.SetFont(font);
@@ -144,9 +200,14 @@ namespace EasySystem.WPFUI
             table.AddHeaderCell(comments);
 
 
-            for (int i = 0; i < 100; i++)
+            for (int i = 1; i < 101; i++)
             {
                 table.AddCell(i.ToString());
+                table.AddCell(string.Empty);
+                table.AddCell(string.Empty);
+                table.AddCell(string.Empty);
+                table.AddCell(string.Empty);
+                table.AddCell(string.Empty);
                 table.AddCell(string.Empty);
                 table.AddCell(string.Empty);
                 table.AddCell(string.Empty);
@@ -155,7 +216,7 @@ namespace EasySystem.WPFUI
             doc.Add(table);
 
             e.WriteTotal(pdfDoc);
-            
+
 
             doc.Close();
         }
@@ -214,47 +275,13 @@ namespace EasySystem.WPFUI
                 return result;
             }
         }
-
-        //protected class TextFooterEventHandler : IEventHandler
-        //{
-        //    protected Document doc;
-
-        //    public TextFooterEventHandler(Document doc)
-        //    {
-        //        this.doc = doc;
-        //    }
-
-
-        //    public void HandleEvent(Event e)
-        //    {
-        //        PdfDocumentEvent docEvent = (PdfDocumentEvent)e;
-        //        PdfCanvas canvas = new PdfCanvas(docEvent.GetPage());
-        //        Rectangle pageSize = docEvent.GetPage().GetPageSize();
-        //        canvas.BeginText();
-        //        try
-        //        {
-        //            canvas.SetFontAndSize(PdfFontFactory.CreateFont(FontConstants.HELVETICA_OBLIQUE), 5);
-        //        }
-        //        catch (IOException ex)
-        //        {
-
-        //        }
-        //        canvas.MoveText((pageSize.GetRight() - doc.GetRightMargin() - (pageSize.GetLeft() + doc.GetLeftMargin())) / 2 + doc.GetLeftMargin(), pageSize.GetTop() - doc.GetTopMargin() + 10)
-        //                            .ShowText(docEvent.GetPage().GetDocument().GetPageNumber(docEvent.GetPage()).ToString())
-        //                            .MoveText(0, (pageSize.GetBottom() + doc.GetBottomMargin()) - (pageSize.GetTop() + doc.GetTopMargin()) - 20)
-        //                            .ShowText("this is a footer")
-        //                            .EndText()
-        //                            .Release();
-        //    }
-        //}
-
     }
 
     public class PageXofY : IEventHandler
     {
         protected PdfFormXObject placeholder;
         protected float side = 20;
-        protected float x = 300;
+        protected float x = 25;
         protected float y = 25;
         protected float space = 300f;
         protected float descent = 3;
@@ -263,7 +290,8 @@ namespace EasySystem.WPFUI
         public PageXofY(PdfDocument pdf)
         {
             placeholder =
-                new PdfFormXObject(new Rectangle(0, 0, side+20, side));
+                new PdfFormXObject(new Rectangle(0, 0, side + 20, side));
+            x = pdf.GetDefaultPageSize().GetWidth() / 2;
         }
 
         public void HandleEvent(Event e)
@@ -272,6 +300,7 @@ namespace EasySystem.WPFUI
             PdfDocument pdf = docEvent.GetDocument();
             PdfPage page = docEvent.GetPage();
             int pageNumber = pdf.GetPageNumber(page);
+            int pageCount = pdf.GetNumberOfPages();
             Rectangle pageSize = page.GetPageSize();
             PdfCanvas pdfCanvas = new PdfCanvas(
                 page.GetLastContentStream(), page.GetResources(), pdf);
@@ -279,8 +308,8 @@ namespace EasySystem.WPFUI
             canvas.SetFont(font);
             Paragraph p = new Paragraph()
                 .Add("第").Add(pageNumber.ToString()).Add("页 ");
-            canvas.ShowTextAligned(p, x, y, TextAlignment.LEFT);
-            pdfCanvas.AddXObject(placeholder, x + space, y - descent);
+            canvas.ShowTextAligned(p, x, y, TextAlignment.RIGHT);
+            pdfCanvas.AddXObject(placeholder, x, y - descent);
             pdfCanvas.Release();
         }
 

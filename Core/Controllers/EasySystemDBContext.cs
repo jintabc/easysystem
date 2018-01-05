@@ -31,12 +31,13 @@ namespace EasySystem.Core.Entity
     {
         protected override void Seed(EasySystemDBContext context)
         {
+            Random r = new Random();
             #region 部门数据
             Common_Department[] departments = new Common_Department[]
             {
-                new Common_Department(){DepartmentID=1,DepartmentName="市政分院"},
-                new Common_Department(){DepartmentID=2,DepartmentName="建筑分院"},
-                new Common_Department(){DepartmentID=3,DepartmentName="景观分院"}
+                new Common_Department(){DepartmentName="市政分院"},
+                new Common_Department(){DepartmentName="建筑分院"},
+                new Common_Department(){DepartmentName="景观分院"}
             };
             context.Common_Departments.AddRange(departments);
             context.SaveChanges();
@@ -66,8 +67,123 @@ namespace EasySystem.Core.Entity
             }
             context.SaveChanges();
             #endregion
-            #region 任务数据
+            #region 业务类型
+            List<Business_ServiceType> serviceTypes = new List<Business_ServiceType>();
+
             #endregion
+            #region 任务数据
+            List<Business_Task> tasks = new List<Business_Task>();
+            for (int i = 1; i < 31; i++)
+            {
+                tasks.Add(new Business_Task()
+                {
+                    ProjectID = i,
+                    DepartmentID = 1,
+                    BusinessType = Common_BusinessType.Inside,
+                    Contact = "某某某"
+                });
+            }
+            for (int i = 31; i < 61; i++)
+            {
+                tasks.Add(new Business_Task()
+                {
+                    ProjectID = i,
+                    DepartmentID = 2,
+                    BusinessType = Common_BusinessType.Inside,
+                    Contact = "某某某"
+                });
+            }
+            context.Business_Tasks.AddRange(tasks);
+            context.SaveChanges();
+
+            List<Business_TaskItem> taskItems = new List<Business_TaskItem>();
+            for (int i = 1; i < 31; i++)
+            {
+                taskItems.Add(new Business_TaskItem()
+                {
+                    TaskID = i,
+                    ItemName = "第一册",
+                    Subject = "道路、景观、照明",
+                    A1 = r.Next(1, 6),
+                    A2 = r.Next(1, 21),
+                    A3 = r.Next(80, 200),
+                    Copies = 9
+                });
+                taskItems.Add(new Business_TaskItem()
+                {
+                    TaskID = i,
+                    ItemName = "第二册",
+                    Subject = "排水",
+                    A1 = r.Next(1, 6),
+                    A2 = r.Next(1, 11),
+                    A3 = r.Next(50, 100),
+                    Copies = 9
+                });
+                taskItems.Add(new Business_TaskItem()
+                {
+                    TaskID = i,
+                    ItemName = "第三册",
+                    Subject = "桥梁",
+                    A2 = r.Next(1, 6),
+                    A3 = r.Next(30, 70),
+                    Copies = 9
+                });
+            }
+            for (int i = 31; i < 61; i++)
+            {
+                for (int j = 1; j < 6; j++)
+                {
+                    taskItems.Add(new Business_TaskItem()
+                    {
+                        TaskID = i,
+                        ItemName = j + "#栋",
+                        Subject = "建筑",
+                        A0 = r.Next(1, 6),
+                        A1 = r.Next(10, 20),
+                        Copies=8
+                    });
+                    taskItems.Add(new Business_TaskItem()
+                    {
+                        TaskID = i,
+                        ItemName = j + "#栋",
+                        Subject = "结构",
+                        A0 = r.Next(1, 6),
+                        A1 = r.Next(10, 20),
+                        Copies = 8
+                    });
+                    taskItems.Add(new Business_TaskItem()
+                    {
+                        TaskID = i,
+                        ItemName = j + "#栋",
+                        Subject = "给排水",
+                        A0 = r.Next(1, 6),
+                        A1 = r.Next(10, 20),
+                        Copies = 8
+                    });
+                    taskItems.Add(new Business_TaskItem()
+                    {
+                        TaskID = i,
+                        ItemName = j + "#栋",
+                        Subject = "电气",
+                        A0 = r.Next(1, 6),
+                        A1 = r.Next(10, 20),
+                        Copies = 8
+                    });
+                    taskItems.Add(new Business_TaskItem()
+                    {
+                        TaskID = i,
+                        ItemName = j + "#栋",
+                        Subject = "暖通",
+                        A0 = r.Next(1, 6),
+                        A1 = r.Next(10, 20),
+                        Copies = 8
+                    });
+                }
+            }
+            context.Business_TaskItems.AddRange(taskItems);
+            context.SaveChanges();
+            #endregion
+
             base.Seed(context);
         }
     }
