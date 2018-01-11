@@ -17,28 +17,28 @@ namespace EasySystem.Core.Entity
         /// <summary>
         /// 设计号
         /// </summary>
-        [MaxLength(15)]
+        [StringLength(15)]
         public string DesignNo { get; set; }
 
         /// <summary>
         /// 项目名称
         /// </summary>
         [Required]
-        [MaxLength(50)]
+        [StringLength(50)]
         public string ProjectName { get; set; }
 
         /// <summary>
         /// 建设单位
         /// </summary>
         [Required]
-        [MaxLength(50)]
+        [StringLength(50)]
         public string Company { get; set; }
 
         /// <summary>
         /// 项目负责人
         /// </summary>
         [Required]
-        [MaxLength(10)]
+        [StringLength(10)]
         public string ProjectLeader{ get; set; }
 
         public Business_Project Clone()

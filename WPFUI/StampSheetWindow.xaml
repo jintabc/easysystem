@@ -4,6 +4,7 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:EasySystem.WPFUI"
+        xmlns:jin="clr-namespace:Jin.WPFControlKit;assembly=WPFControlKit"
         mc:Ignorable="d"
         Title="底图盖章单" Style="{StaticResource DefaultWindowStyle}">
     <Window.Resources>
@@ -11,8 +12,8 @@
             <Button Content="删除" Click="Button_Click" CommandParameter="{Binding Path=Index}"/>
         </DataTemplate>
     </Window.Resources>
-    <StackPanel>
-        <GroupBox Header="底图盖章单信息" Margin="10">
+    <DockPanel>
+        <GroupBox Header="底图盖章单信息" Margin="10" DockPanel.Dock="Top">
             <Grid>
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="100"/>
@@ -44,10 +45,11 @@
                 <DatePicker SelectedDate="{Binding Path=StampDate}"  Style="{StaticResource DefaultDatePickerStyle}" Grid.Column="1" Grid.Row="3"/>
                 <Label Content="备注" Style="{StaticResource DefaultLabelStyle}" Grid.Column="0" Grid.Row="4"/>
                 <TextBox Text="{Binding Path=Remarks}" Style="{StaticResource MultilineTextStyle}" Grid.Column="1" Grid.ColumnSpan="4" Grid.Row="4"/>
+                <Button x:Name="btnSave" Content="保存" Style="{StaticResource DefaultButtonStyle}" Grid.Column="6" Grid.Row="4" />
             </Grid>
         </GroupBox>
-        <GroupBox Header="图纸明细" Margin="10">
-            <DataGrid x:Name="dgDetails" Height="350" DataContext="{Binding Path=Items}" ItemsSource="{Binding}" AutoGenerateColumns="False" LoadingRow="dgTool_LoadingRow" UnloadingRow="dgTool_UnloadingRow" RowHeight="40" SelectionMode="Single">
+        <GroupBox Header="图纸明细" Margin="10" Width="500" DockPanel.Dock="Left">
+            <DataGrid x:Name="dgDetails" DataContext="{Binding Path=Items}" ItemsSource="{Binding}" AutoGenerateColumns="False" LoadingRow="dgTool_LoadingRow" UnloadingRow="dgTool_UnloadingRow" RowHeight="40" SelectionMode="Single">
                 <DataGrid.Columns>
                     <DataGridTextColumn Header="名称" ElementStyle="{StaticResource DefaultGridCellStyle}" Binding="{Binding Path=ItemName}"/>
                     <DataGridTextColumn Header="专业" ElementStyle="{StaticResource DefaultGridCellStyle}" Binding="{Binding Path=Subject}"/>
@@ -57,9 +59,47 @@
                     <DataGridTextColumn Header="A3" ElementStyle="{StaticResource DefaultGridCellStyle}" Binding="{Binding Path=A3}"/>
                     <DataGridTextColumn Header="备注" ElementStyle="{StaticResource DefaultGridCellStyle}" Binding="{Binding Path=Remarks}"/>
                     <DataGridTemplateColumn Header="操作" CellTemplate="{StaticResource ResourceKey=dtOperations}" />
-                </DataGrid.Columns>                
+                </DataGrid.Columns>
             </DataGrid>
         </GroupBox>
-        <Button x:Name="btnSave" Content="保存" Style="{StaticResource DefaultButtonStyle}" />
-    </StackPanel>
+        <GroupBox Name="gbItemInfo" Header="图纸明细" Margin="10" DockPanel.Dock="Right">
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="100" />
+                    <ColumnDefinition Width="1*" />
+                    <ColumnDefinition Width="100" />
+                    <ColumnDefinition Width="1*" />
+                </Grid.ColumnDefinitions>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="40"/>
+                    <RowDefinition Height="40"/>
+                    <RowDefinition Height="40"/>
+                    <RowDefinition Height="40"/>
+                    <RowDefinition Height="40"/>
+                    <RowDefinition Height="40"/>
+                    <RowDefinition Height="40"/>
+                </Grid.RowDefinitions>
+                <Label Content="名称" Style="{StaticResource DefaultLabelStyle}" Grid.Row="0" Grid.Column="0"/>
+                <TextBox Text="{Binding Path=ItemName}" Style="{StaticResource DefaultTextStyle}" Grid.Row="0" Grid.Column="1" Grid.ColumnSpan="3"/>
+                <Label Content="专业" Style="{StaticResource DefaultLabelStyle}" Grid.Row="1" Grid.Column="0"/>
+                <TextBox Text="{Binding Path=Subject}" Style="{StaticResource DefaultTextStyle}" Grid.Row="1" Grid.Column="1" Grid.ColumnSpan="3"/>
+                <Label Content="A0" Style="{StaticResource DefaultLabelStyle}" Grid.Row="2" Grid.Column="0"/>
+                <TextBox Text="{Binding Path=A0}" Style="{StaticResource DefaultTextStyle}" Grid.Row="2" Grid.Column="1"/>
+                <Label Content="A1" Style="{StaticResource DefaultLabelStyle}" Grid.Row="2" Grid.Column="2"/>
+                <TextBox Text="{Binding Path=A1}" Style="{StaticResource DefaultTextStyle}" Grid.Row="2" Grid.Column="3"/>
+                <Label Content="A2" Style="{StaticResource DefaultLabelStyle}" Grid.Row="3" Grid.Column="0"/>
+                <TextBox Text="{Binding Path=A2}" Style="{StaticResource DefaultTextStyle}" Grid.Row="3" Grid.Column="1"/>
+                <Label Content="A3" Style="{StaticResource DefaultLabelStyle}" Grid.Row="3" Grid.Column="2"/>
+                <TextBox Text="{Binding Path=A3}" Style="{StaticResource DefaultTextStyle}" Grid.Row="3" Grid.Column="3"/>
+                <Label Content="备注" Style="{StaticResource DefaultLabelStyle}" Grid.Row="4" Grid.Column="0"/>
+                <TextBox Text="{Binding Path=Description}" Style="{StaticResource DefaultTextStyle}" Grid.Row="4" Grid.Column="1" Grid.ColumnSpan="5"/>
+                <WrapPanel HorizontalAlignment="Center" Grid.Row="5" Grid.Column="0" Grid.ColumnSpan="4">
+                    <Button x:Name="btnNew" Content="新记录" Style="{StaticResource DefaultButtonStyle}" Click="btnNew_Click"/>
+                    <Button x:Name="btnSaveItem" Content="保存" Style="{StaticResource DefaultButtonStyle}" Click="btnSaveItem_Click"/>
+
+                </WrapPanel>
+                <jin:NumericUpDown Value="{Binding Path=A3,Mode=TwoWay}" Style="{StaticResource DefaultNumericStyle}" Grid.Row="6" Grid.Column="0" Grid.ColumnSpan="2" Margin="5,5,5,5"  />
+            </Grid>
+        </GroupBox>
+    </DockPanel>
 </Window>

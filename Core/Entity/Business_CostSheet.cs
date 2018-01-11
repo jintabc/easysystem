@@ -10,7 +10,7 @@ namespace EasySystem.Core.Entity
     public class Business_CostSheet
     {
         [Key]
-        public string CostSheet { get; set; }
+        public string CostSheetID { get; set; }
 
         [Required]
         public int ProjectID { get; set; }
@@ -28,8 +28,7 @@ namespace EasySystem.Core.Entity
 
         [ForeignKey("DepartmentID")]
         public Common_Department Department { get; set; }
-
-        [InverseProperty("CostSheetID")]
+        
         public List<Business_CostSheetItem> Items { get; set; }
     }
 }

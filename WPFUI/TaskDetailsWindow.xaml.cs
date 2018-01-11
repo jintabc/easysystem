@@ -24,13 +24,25 @@ namespace EasySystem.WPFUI
         TaskController controller = new TaskController();
         DepartmentController dController = new DepartmentController();
         Business_Task task = null;
-        public TaskDetailsWindow(int taskId)
+        public TaskDetailsWindow()
         {
             InitializeComponent();
-            task = controller.GetTask(taskId);
+            cboDepartment.ItemsSource = dController.GetDepartments();
+            task = new Business_Task()
+            {
+                Project = new Business_Project(),
+                Department=new Common_Department(),
+                Items=new System.Collections.ObjectModel.ObservableCollection<Business_TaskItem>()
+            };
+            gbTaskInfo.DataContext = task;
+            gbItemInfo.DataContext = new Business_TaskItem() { Task = task };
+        }
+        public TaskDetailsWindow(long taskId)
+        {
+            InitializeComponent();
             cboDepartment.ItemsSource = dController.GetDepartments();
             gbItemInfo.DataContext = new Business_TaskItem() { Task = task };
-            this.DataContext = task;
+            Binding(taskId);
         }
 
         private void miGenerateStampSheet_Click(object sender, RoutedEventArgs e)
@@ -73,17 +85,26 @@ namespace EasySystem.WPFUI
             }
         }
 
-        private void btnSave_Click(object sender, RoutedEventArgs e)
+        private void Binding(long taskId)
+        {
+            task = controller.GetTask(taskId);
+            this.DataContext = task;
+            dgTaskItems.ItemsSource = null;
+            dgTaskItems.ItemsSource = task.Items;
+        }
+
+        private void btnSaveItem_Click(object sender, RoutedEventArgs e)
         {
             Business_TaskItem item = (Business_TaskItem)gbItemInfo.DataContext;
-            if (item.TaskItemID == -1)
+            if (controller.SaveItem(item) > 0)
             {
-
+                MessageBox.Show("成功");
             }
             else
             {
-
+                MessageBox.Show("失败");
             }
+            Binding(item.TaskID);
         }
 
         private void btnNew_Click(object sender, RoutedEventArgs e)
@@ -102,6 +123,28 @@ namespace EasySystem.WPFUI
             item.A3 = null;
             item.Copies = 1;
             item.Description = string.Empty;
+        }
+
+        private void miSave_Click(object sender, RoutedEventArgs e)
+        {
+            Business_Task task = (Business_Task)gbTaskInfo.DataContext;
+            int result = 0;
+            if (this.task.TaskID < 1)
+            {
+                //result = controller.AddTask(this.task);
+            }
+            else
+            {
+                //result = controller.UpdateTask(this.task);
+            }
+            if (result > 0)
+            {
+                MessageBox.Show("成功");
+            }
+            else
+            {
+                MessageBox.Show("失败");
+            }
         }
     }
 

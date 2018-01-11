@@ -15,10 +15,10 @@ namespace EasySystem.Core.Entity
         [Required]
         public string StampSheetID { get; set; }
 
-        [MaxLength(15)]
+        [StringLength(15)]
         public string ItemName { get; set; }
 
-        [MaxLength(20)]
+        [StringLength(20)]
         public string Subject { get; set; }
 
         public int? A0 { get; set; }
@@ -31,6 +31,7 @@ namespace EasySystem.Core.Entity
         [ForeignKey("StampSheetID")]
         public Business_StampSheet StampSheet { get; set; }
 
+        public Business_StampSheetItem() { }
         public Business_StampSheetItem(Business_TaskItem taskItem)
         {
             this.ItemName = taskItem.ItemName;

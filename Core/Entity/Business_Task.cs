@@ -22,7 +22,7 @@ namespace EasySystem.Core.Entity
 
         public DateTime? FinishDate { get; set; }
 
-        [MaxLength(10)]
+        [StringLength(10)]
         public string Contact { get; set; }
 
 
@@ -39,8 +39,8 @@ namespace EasySystem.Core.Entity
 
         [ForeignKey("DepartmentID")]
         public Common_Department Department { get; set; }
-
-        [InverseProperty("TaskID")]
+        
         public ObservableCollection<Business_TaskItem> Items { get; set; }
+        
     }
 }

@@ -1,27 +1,32 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Text;
 
 namespace EasySystem.Core.Entity
 {
+    [Table("dbo.View_TaskListModel")]
     public class Business_TaskListModel
     {
-        public int TaskID { get; private set; }
-        public DateTime? FinishDate { get; private set; }
-        public string ProjectName { get; private set; }
-        public string DepartmentName { get; private set; }
-        public int A0 { get; private set; }
-        public int A1 { get; private set; }
-        public int A2 { get; private set; }
-        public int A3 { get; private set; }
-        public string CostSheetNo { get; private set; }
-        public string StampSheetNo { get; private set; }
-        public string HandoverSheetNo { get; private set; }
-        public int BusinessType { get; private set; }
+        [Key]
+        public long TaskID { get; set; }
+        public DateTime? FinishDate { get; set; }
+        public string ProjectName { get; set; }
+        public string DepartmentName { get; set; }
+        public int? A0 { get; set; }
+        public int? A1 { get; set; }
+        public int? A2 { get; set; }
+        public int? A3 { get; set; }
+        public string CostSheetNo { get; set; }
+        public string StampSheetNo { get; set; }
+        public string HandoverSheetNo { get; set; }
+        public Common_BusinessType BusinessType { get; set; }
 
-        public Business_TaskListModel(int taskID,DateTime? finishDate,string projectName,string departmentName,
-            int a0,int a1,int a2,int a3,string costSheetNo,string stampSheetNo,string handoverSheetNo,int businessType)
+        public Business_TaskListModel() { }
+        public Business_TaskListModel(long taskID,DateTime? finishDate,string projectName,string departmentName,
+            int? a0,int? a1,int? a2,int? a3,string costSheetNo,string stampSheetNo,string handoverSheetNo, Common_BusinessType businessType)
         {
             this.TaskID = taskID;
             this.FinishDate = finishDate;

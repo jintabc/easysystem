@@ -7,6 +7,9 @@
         mc:Ignorable="d"
         Title="任务列表" Style="{StaticResource DefaultWindowStyle}">
     <DockPanel>
+        <Menu DockPanel.Dock="Top">
+            <MenuItem Header="添加新任务" Click="miAddTask_Click"/>
+        </Menu>
         <GroupBox Header="查询" Margin="10" DockPanel.Dock="Top">
             <Grid>
                 <Grid.ColumnDefinitions>
@@ -46,9 +49,9 @@
                     <GridViewColumn Header="A1" DisplayMemberBinding="{Binding Path=A1}"/>
                     <GridViewColumn Header="A2" DisplayMemberBinding="{Binding Path=A2}"/>
                     <GridViewColumn Header="A3" DisplayMemberBinding="{Binding Path=A3}"/>
-                    <GridViewColumn Header="成本单编号" DisplayMemberBinding="{Binding Path=CostSheetNo}"/>
+                    <GridViewColumn Header="成本管理卡编号" DisplayMemberBinding="{Binding Path=CostSheetNo}"/>
                     <GridViewColumn Header="底图盖章单编号" DisplayMemberBinding="{Binding Path=StampSheetNo}"/>
-                    <GridViewColumn Header="成果交接单单编号" DisplayMemberBinding="{Binding Path=HandoverSheetNo}"/>
+                    <GridViewColumn Header="成果交接单编号" DisplayMemberBinding="{Binding Path=HandoverSheetNo}"/>
                     <GridViewColumn Header="业务类型" DisplayMemberBinding="{Binding Path=BusinessType}"/>
                     <GridViewColumn Header="操作组"/>
                 </GridView>

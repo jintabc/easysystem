@@ -37,5 +37,11 @@ namespace EasySystem.WPFUI
                 window.Show();
             }
         }
+
+        private void miAddTask_Click(object sender, RoutedEventArgs e)
+        {
+            TaskDetailsWindow window = new TaskDetailsWindow();
+            window.Show();
+        }
     }
 }

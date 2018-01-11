@@ -24,7 +24,7 @@ namespace EasySystem.WPFUI
             InitializeComponent();
             (tbEditZone.Items[0] as TabItem).DataContext = project;
         }
-
+        
         Business_Project project = new Business_Project() { DesignNo = "1123", ProjectName = "asldkf", Company = "asdfasdf", ProjectLeader = "asdf" };
         Business_Project updateProject = null;
         ProjectController controller = new ProjectController();

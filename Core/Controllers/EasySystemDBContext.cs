@@ -1,10 +1,11 @@
-﻿using System;
+﻿using EasySystem.Core.Entity;
+using System;
 using System.Collections.Generic;
 using System.Data.Entity;
 using System.Linq;
 using System.Text;
 
-namespace EasySystem.Core.Entity
+namespace EasySystem.Core.Controller
 {
     public class EasySystemDBContext : DbContext
     {
@@ -58,9 +59,9 @@ namespace EasySystem.Core.Entity
             {
                 Business_Project project = new Business_Project()
                 {
-                    ProjectName = "项目" + i + 30,
+                    ProjectName = "项目" + (i + 30),
                     ProjectLeader = "某某某",
-                    Company = "建设单位" + i + 30,
+                    Company = "建设单位" + (i + 30),
                     DesignNo = "2017J0" + i.ToString().PadLeft(2, '0')
                 };
                 context.Business_Projects.Add(project);

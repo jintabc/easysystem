@@ -21,12 +21,19 @@ namespace EasySystem.WPFUI
     public partial class StampSheetWindow : Window
     {
         Business_StampSheet stampSheet = null;
-        DepartmentController dptController = new DepartmentController();
+        //DepartmentController dptController = new DepartmentController();
+
+        public StampSheetWindow()
+        {
+            InitializeComponent();
+            Business_StampSheetItem item = new Business_StampSheetItem() { A3 = 50 };
+            gbItemInfo.DataContext = item;
+        }
 
         public StampSheetWindow(Business_Task task)
         {
             InitializeComponent();
-            cboDepartments.ItemsSource = dptController.GetDepartments();
+            //cboDepartments.ItemsSource = dptController.GetDepartments();
             this.stampSheet = new Business_StampSheet()
             {
                 Project = task.Project,
@@ -71,6 +78,16 @@ namespace EasySystem.WPFUI
                     catch { }
                 }
             }
+        }
+
+        private void btnSaveItem_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void btnNew_Click(object sender, RoutedEventArgs e)
+        {
+
         }
     }
 }

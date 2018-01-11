@@ -15,10 +15,10 @@ namespace EasySystem.Core.Entity
         [Required]
         public string HandoverSheetID { get; set; }
 
-        [MaxLength(15)]
+        [StringLength(15)]
         public string ItemName { get; set; }
 
-        [MaxLength(20)]
+        [StringLength(20)]
         public string Subject { get; set; }
         public int? A0 { get; set; }
         public int? A1 { get; set; }

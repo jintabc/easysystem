@@ -12,15 +12,14 @@ namespace EasySystem.Core.Entity
         [Key]
         public int DepartmentID { get; set; }
 
-        [MaxLength(30)]
+        [StringLength(30)]
         public string DepartmentName { get; set; }
         
         public int? ParentDepartmentID { get; set; }
 
         [ForeignKey("ParentDepartmentID")]
         public Common_Department ParentDepartment { get; set; }
-
-        [InverseProperty("ParentDepartmentID")]
+        
         public List<Common_Department> SubDepartments { get; set; }
     }
 }

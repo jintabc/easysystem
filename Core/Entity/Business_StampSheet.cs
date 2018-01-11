@@ -25,8 +25,7 @@ namespace EasySystem.Core.Entity
 
         [ForeignKey("DepartmentID")]
         public Common_Department Department { get; set; }
-
-        [InverseProperty("StampSheetID")]
+        
         public List<Business_StampSheetItem> Items { get; set; }
     }
 }

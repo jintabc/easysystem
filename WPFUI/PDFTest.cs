@@ -15,6 +15,8 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Printing;
+using System.IO;
 
 namespace EasySystem.WPFUI
 {
@@ -32,8 +34,7 @@ namespace EasySystem.WPFUI
             PageXofY e = new PageXofY(pdfDoc);
 
             pdfDoc.AddEventHandler(PdfDocumentEvent.END_PAGE, e);
-
-
+            
 
 
             Paragraph title = new Paragraph("设计成果交接单");
@@ -219,61 +220,21 @@ namespace EasySystem.WPFUI
 
 
             doc.Close();
+
+            //pdfDoc.GetWriter().GetOutputStream().
+            //PrintQueue queue = LocalPrintServer.GetDefaultPrintQueue();
+            //using (PrintSystemJobInfo job = queue.AddJob())
+            //{
+            //    using (Stream stream = job.JobStream)
+            //    {
+            //        stream.Write()
+            //    }
+            //}
         }
 
         public static float CentimeterToPoint(float centimeter)
         {
             return centimeter / PointUnit;
-        }
-
-        protected internal class RepeatTableRenderer : TableRenderer
-        {
-            public RepeatTableRenderer(Table modelElement, Table.RowRange rowRange) : base(modelElement, rowRange)
-            {
-            }
-
-            protected RepeatTableRenderer(Table modelElement) : base(modelElement)
-            {
-            }
-
-
-            public override IRenderer GetNextRenderer()
-            {
-                return new RepeatTableRenderer((Table)modelElement);
-            }
-
-
-            protected override TableRenderer[] Split(int row)
-            {
-                RepeatTableRenderer splitRenderer = (RepeatTableRenderer)CreateSplitRenderer(
-                        new Table.RowRange(rowRange.GetStartRow(), rowRange.GetStartRow() + row));
-                splitRenderer.rows = SubList(rows, 0, row);
-                RepeatTableRenderer overflowRenderer;
-                if (row > 5)
-                {
-                    overflowRenderer = (RepeatTableRenderer)CreateOverflowRenderer(
-                            new Table.RowRange(rowRange.GetStartRow() - 5 + row, rowRange.GetFinishRow()));
-                    overflowRenderer.rows = SubList(rows, row - 5, rows.Count());
-                }
-                else
-                {
-                    overflowRenderer = (RepeatTableRenderer)CreateOverflowRenderer(
-                            new Table.RowRange(rowRange.GetStartRow() + row, rowRange.GetFinishRow()));
-                    overflowRenderer.rows = SubList(rows, row, rows.Count());
-                }
-                splitRenderer.occupiedArea = occupiedArea;
-                return new TableRenderer[] { splitRenderer, overflowRenderer };
-            }
-
-            private IList<CellRenderer[]> SubList(IList<CellRenderer[]> list, int start, int end)
-            {
-                List<CellRenderer[]> result = new List<CellRenderer[]>();
-                for (int i = start; i <= end; i++)
-                {
-                    result.Add(list[i]);
-                }
-                return result;
-            }
         }
     }
 

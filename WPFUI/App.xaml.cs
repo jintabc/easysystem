@@ -21,7 +21,7 @@ namespace WPFUI
             Thread.CurrentThread.CurrentCulture = (CultureInfo)Thread.CurrentThread.CurrentCulture.Clone();
             Thread.CurrentThread.CurrentCulture.DateTimeFormat.ShortDatePattern = "yyyy年MM月dd日";
 
-            System.Data.Entity.Database.SetInitializer(new EasySystem.Core.Entity.EasySystemInitializer());
+            System.Data.Entity.Database.SetInitializer(new EasySystem.Core.Controller.EasySystemInitializer());
             base.OnStartup(e);
         }
     }
