@@ -1,4 +1,6 @@
-﻿using System;
+﻿using EasySystem.Core.Controllers;
+using EasySystem.Core.Entity;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -18,9 +20,30 @@ namespace EasySystem.WPFUI
     /// </summary>
     public partial class HandoverSheetWindow : Window
     {
+        private Business_HandoverSheet sheet = null;
+        private HandoverSheetController sheetController = null;
         public HandoverSheetWindow()
         {
             InitializeComponent();
+            sheetController = new HandoverSheetController();
+        }
+
+        public HandoverSheetWindow(int sheetID)
+        {
+            InitializeComponent();
+            sheetController = new HandoverSheetController();
+            sheet = sheetController.Get(sheetID);
+            this.DataContext = sheet;
+        }
+
+        private void btnSaveItem_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void btnNew_Click(object sender, RoutedEventArgs e)
+        {
+
         }
     }
 }

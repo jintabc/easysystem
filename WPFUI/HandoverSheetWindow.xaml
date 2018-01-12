@@ -6,8 +6,8 @@
         xmlns:local="clr-namespace:EasySystem.WPFUI"
         mc:Ignorable="d"
         Title="成果交接单" Style="{StaticResource DefaultWindowStyle}">
-    <StackPanel>
-        <GroupBox Header="基本信息" Margin="5">
+    <DockPanel>
+        <GroupBox Header="基本信息" Margin="5" DockPanel.Dock="Top">
             <Grid>
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="100"/>
@@ -42,8 +42,8 @@
                 <TextBox Text="{Binding Path=Remarks}" Style="{StaticResource MultilineTextStyle}" Grid.Column="1" Grid.ColumnSpan="4" Grid.Row="4"/>
             </Grid>
         </GroupBox>
-        <GroupBox Header="成果明细" Margin="5">
-            <DataGrid>
+        <GroupBox Name="gbItems" Header="成果明细" Width="500" Margin="5" DockPanel.Dock="Left">
+            <DataGrid ItemsSource="{Binding Path=Items}" AutoGenerateColumns="False">
                 <DataGrid.Columns>
                     <DataGridTextColumn Header="序号" Binding="{Binding}"/>
                     <DataGridTextColumn Header="名称" Binding="{Binding Path=ItemName}"/>
@@ -56,5 +56,46 @@
                 </DataGrid.Columns>
             </DataGrid>
         </GroupBox>
-    </StackPanel>
+        <GroupBox Header="成果明细" Margin="5" DockPanel.Dock="Right">
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="100" />
+                    <ColumnDefinition Width="1*" />
+                    <ColumnDefinition Width="100" />
+                    <ColumnDefinition Width="1*" />
+                </Grid.ColumnDefinitions>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="40"/>
+                    <RowDefinition Height="40"/>
+                    <RowDefinition Height="40"/>
+                    <RowDefinition Height="40"/>
+                    <RowDefinition Height="40"/>
+                    <RowDefinition Height="40"/>
+                    <RowDefinition Height="40"/>
+                </Grid.RowDefinitions>
+                <Label Content="名称" Style="{StaticResource DefaultLabelStyle}" Grid.Row="0" Grid.Column="0"/>
+                <TextBox Text="{Binding Path=ItemName}" Style="{StaticResource DefaultTextStyle}" Grid.Row="0" Grid.Column="1" Grid.ColumnSpan="3"/>
+                <Label Content="专业" Style="{StaticResource DefaultLabelStyle}" Grid.Row="1" Grid.Column="0"/>
+                <TextBox Text="{Binding Path=Subject}" Style="{StaticResource DefaultTextStyle}" Grid.Row="1" Grid.Column="1" Grid.ColumnSpan="3"/>
+                <Label Content="A0" Style="{StaticResource DefaultLabelStyle}" Grid.Row="2" Grid.Column="0"/>
+                <TextBox Text="{Binding Path=A0}" Style="{StaticResource DefaultTextStyle}" Grid.Row="2" Grid.Column="1"/>
+                <Label Content="A1" Style="{StaticResource DefaultLabelStyle}" Grid.Row="2" Grid.Column="2"/>
+                <TextBox Text="{Binding Path=A1}" Style="{StaticResource DefaultTextStyle}" Grid.Row="2" Grid.Column="3"/>
+                <Label Content="A2" Style="{StaticResource DefaultLabelStyle}" Grid.Row="3" Grid.Column="0"/>
+                <TextBox Text="{Binding Path=A2}" Style="{StaticResource DefaultTextStyle}" Grid.Row="3" Grid.Column="1"/>
+                <Label Content="A3" Style="{StaticResource DefaultLabelStyle}" Grid.Row="3" Grid.Column="2"/>
+                <TextBox Text="{Binding Path=A3}" Style="{StaticResource DefaultTextStyle}" Grid.Row="3" Grid.Column="3"/>
+                <Label Content="A4" Style="{StaticResource DefaultLabelStyle}" Grid.Row="4" Grid.Column="0"/>
+                <TextBox Text="{Binding Path=A4}" Style="{StaticResource DefaultTextStyle}" Grid.Row="4" Grid.Column="1"/>
+                <Label Content="份数" Style="{StaticResource DefaultLabelStyle}" Grid.Row="4" Grid.Column="2"/>
+                <TextBox Text="{Binding Path=Copies}" Style="{StaticResource DefaultTextStyle}" Grid.Row="4" Grid.Column="3"/>
+                <Label Content="备注" Style="{StaticResource DefaultLabelStyle}" Grid.Row="5" Grid.Column="0"/>
+                <TextBox Text="{Binding Path=Description}" Style="{StaticResource DefaultTextStyle}" Grid.Row="5" Grid.Column="1" Grid.ColumnSpan="5"/>
+                <WrapPanel HorizontalAlignment="Center" Grid.Row="6" Grid.Column="0" Grid.ColumnSpan="4">
+                    <Button x:Name="btnNew" Content="新记录" Style="{StaticResource DefaultButtonStyle}" Click="btnNew_Click"/>
+                    <Button x:Name="btnSaveItem" Content="保存" Style="{StaticResource DefaultButtonStyle}" Click="btnSaveItem_Click"/>
+                </WrapPanel>
+            </Grid>
+        </GroupBox>
+    </DockPanel>
 </Window>

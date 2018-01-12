@@ -52,6 +52,7 @@
     <Compile Include="Controllers\DBHelper.cs" />
     <Compile Include="Controllers\DepartmentController.cs" />
     <Compile Include="Controllers\GoodsController.cs" />
+    <Compile Include="Controllers\HandoverSheetController.cs" />
     <Compile Include="Controllers\InventoryController.cs" />
     <Compile Include="Controllers\StampController.cs" />
     <Compile Include="Controllers\SupplierController.cs" />

@@ -70,7 +70,7 @@
                 </Label>
                 <Label Content="总金额" Style="{StaticResource DefaultLabelStyle}" Grid.Column="0" Grid.Row="5"/>
                 <Label Content="" Style="{StaticResource LongLabelStyle}" Grid.Column="1" Grid.Row="5"/>
-                <Button Content="保存" Style="{StaticResource DefaultButtonStyle}" Grid.Column="2" Grid.Row="5"/>
+                <Button Content="保存" Style="{StaticResource DefaultButtonStyle}" Grid.Column="6" Grid.Row="5"/>
             </Grid>
         </GroupBox>
         <GroupBox Header="详细信息" Margin="10">
